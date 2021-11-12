@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "NodeJS": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["eslint-plugin-react"],
+  "extends": ["eslint-config-prettier", "plugin:react-hooks/recommended"],
+  "rules": {
+    "prefer-const": "error",
+    "no-var": "error",
+    "semi": "error",
+    "arrow-parens": "error",
+    "no-undef": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
