@@ -26,7 +26,7 @@ yarn build
 yarn serve
 ```
 
-# Contributing
+## Contributing
 
 Rules:
 
