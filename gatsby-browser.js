@@ -21,9 +21,9 @@ const queryClient = new QueryClient({
         return response.json();
       },
       cacheTime: 300000,
-      staleTime: 300000
-    }
-  }
+      staleTime: 300000,
+    },
+  },
 });
 
 export const wrapRootElement = ({ element }) => (

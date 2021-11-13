@@ -30,5 +30,10 @@
     "no-undef": "error",
     "indent": ["error", 2, { "SwitchCase": 1, "offsetTernaryExpressions": true }],
     "quote-props": ["error", "consistent"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

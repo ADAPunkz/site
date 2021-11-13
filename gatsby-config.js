@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://focused-tereshkova-6d95b3.netlify.app/',
@@ -17,19 +18,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `ADAPunkz`,
-        short_name: `ADAPunkz`,
-        start_url: `/explore`,
-        background_color: `#00AADD`,
-        theme_color: `#19809F`,
-        display: `standalone`,
+        name: 'ADAPunkz',
+        short_name: 'ADAPunkz',
+        start_url: '/explore',
+        background_color: '#00AADD',
+        theme_color: '#19809F',
+        display: 'standalone',
         icon: 'src/images/icon.png',
         icon_options: {
-          purpose: `any maskable`,
+          purpose: 'any maskable',
         },
       },
     },
-    "gatsby-plugin-offline",
+    'gatsby-plugin-offline',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -53,6 +54,6 @@ module.exports = {
     'gatsby-plugin-why-did-you-render',
     'gatsby-plugin-no-sourcemaps',
     'gatsby-plugin-gatsby-cloud',
-    'gatsby-plugin-netlify'
+    'gatsby-plugin-netlify',
   ],
 };
