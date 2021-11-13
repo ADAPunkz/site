@@ -46,6 +46,4 @@ Reading:
 - [React Query](https://react-query.tanstack.com/overview)
 - [zustand](https://github.com/pmndrs/zustand)
 
-The above packages make up the primary tech stack of this project. It is worth familiarising yourself with first, especially regarding Gatsby which has some specific ways that you should implement certain features (primarily images and site navigation) in order for it to optimise correctly.
-
-Unless there's a particular special case, all UI components should derive from Grommet, all API queries should run via React Query, all state should be managed with zustand, etc.
+The above packages make up the primary tech stack of this project.
