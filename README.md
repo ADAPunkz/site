@@ -30,9 +30,13 @@ yarn serve
 
 Rules:
 
-- Keep it focused. Linting and formatting configurations are included.
+- Keep it focused. A linting configuration is included and will run on pre-commit.
 - Keep it light. Try to avoid adding external dependencies unless you really need to.
 - Keep it generic. We, or others, may end up using this code for other NFTs.
+
+git:
+- All contributions should be branched from current `master`
+- Branch name should follow the format `feat/featurename` for features, `fix/fixname` for fixes, and `chore/chorename` for chores
 
 Reading:
 
