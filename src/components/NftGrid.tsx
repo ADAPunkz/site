@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Grid, InfiniteScroll, Spinner } from 'grommet';
@@ -10,7 +12,6 @@ import { EVENTS, NftApiResponse, NftType } from '../utils';
 import NftCard from './NftCard';
 import SiteHeading from './SiteHeading';
 
-//TODO remove this 'magic' reference to header height (120px) for a dynamic reference
 const ConstrainedGrid = styled(Grid)`
   max-height: calc(100vh - 120px);
   padding: 24px 24px 0px 24px;

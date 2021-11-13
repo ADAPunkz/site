@@ -6,11 +6,9 @@ import NftDetailsTicker from './NftDetailsTicker';
 const AssetsLoader = ({ assetNames }: { assetNames: string[] }) => {
   const endpoints = assetNamesToEndpoints('/punkz', 'ADAPunk', assetNames);
   const results = useQueries(
-    endpoints.map((endpoint) => {
-      return {
-        queryKey: endpoint,
-      };
-    }),
+    endpoints.map((endpoint) => ({
+      queryKey: endpoint,
+    })),
   );
 
   const nfts = [];

@@ -3,7 +3,7 @@ import MiddleEllipsis from 'react-middle-ellipsis';
 
 import { useNami } from '../hooks';
 
-const ConnectButton = ({ policyId }: { policyId: string }) => {
+const ConnectButton = ({ policyId }: { policyId?: string }) => {
   const { address, isEnabled, enable, loading } = useNami(policyId);
 
   return (
@@ -24,7 +24,7 @@ const ConnectButton = ({ policyId }: { policyId: string }) => {
             <Text>Connect</Text>
           )
         }
-        disabled={!!address || isEnabled}
+        disabled={Boolean(address) || isEnabled}
         size="small"
         color="white"
         primary

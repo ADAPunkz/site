@@ -8,7 +8,9 @@ interface EventAction {
 let subscribers = [];
 
 const subscribe = (filter: string, callback: (event: EventAction) => void) => {
-  if (!filter || !callback) return undefined;
+  if (!filter || !callback) {
+    return undefined;
+  }
 
   subscribers = [...subscribers, [filter, callback]];
 
@@ -22,7 +24,10 @@ export const dispatch = (event: EventAction) => {
   const args = [event];
 
   subscribers.forEach(([filter, callback]) => {
-    if (filter !== type) return;
+    if (filter !== type) {
+      return;
+    }
+
     callback(...args);
   });
 };

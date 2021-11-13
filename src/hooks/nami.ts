@@ -14,18 +14,27 @@ export const useNami = (policyId?: string) => {
   const [assets, setAssets] = useStore((state) => [state.assets, state.setAssets], shallow);
 
   const checkAndSetEnabled = async () => {
-    if (!cardano.hasNami) return;
+    if (!cardano.hasNami) {
+      return;
+    }
+
     const enabled = await cardano.isEnabled();
     setIsEnabled(enabled);
   };
 
   const getAndSetAddress = useCallback(async () => {
-    if (!mountedRef.current) return;
+    if (!mountedRef.current) {
+      return;
+    }
+
     setAddress(await cardano.getAddress());
   }, [setAddress]);
 
   const getAndSetAssets = useCallback(async () => {
-    if (!mountedRef.current) return;
+    if (!mountedRef.current) {
+      return;
+    }
+
     setAssets(await cardano.getAssetNames(policyId));
   }, [policyId, setAssets]);
 
@@ -34,7 +43,9 @@ export const useNami = (policyId?: string) => {
     cardano
       .enable()
       .then((result) => {
-        if (!mountedRef.current) return;
+        if (!mountedRef.current) {
+          return;
+        }
 
         setLoading(false);
         setIsEnabled(result);
@@ -45,7 +56,10 @@ export const useNami = (policyId?: string) => {
         }
       })
       .catch(() => {
-        if (!mountedRef.current) return;
+        if (!mountedRef.current) {
+          return;
+        }
+
         setLoading(false);
         setIsEnabled(false);
       });
@@ -59,12 +73,18 @@ export const useNami = (policyId?: string) => {
   }, []);
 
   useEffect(() => {
-    if (!isEnabled) return;
+    if (!isEnabled) {
+      return;
+    }
+
     getAndSetAddress();
   }, [getAndSetAddress, isEnabled]);
 
   useEffect(() => {
-    if (!isEnabled || !policyId) return;
+    if (!isEnabled || !policyId) {
+      return;
+    }
+
     getAndSetAssets();
   }, [getAndSetAssets, isEnabled, policyId]);
 

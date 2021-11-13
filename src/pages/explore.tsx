@@ -11,7 +11,6 @@ import { useBus } from '../hooks';
 import { useStore } from '../hooks/store';
 import { EVENTS, NftFilterForm, NftType, toQueryString } from '../utils';
 
-//TODO there might be a neater way to do this (access a context which is only defined in children of Layout) without splitting the component into two
 const InnerExplore = () => {
   const [payload, setPayload] = useStore((state) => [state.filterPayload, state.setFilterPayload], shallow);
 

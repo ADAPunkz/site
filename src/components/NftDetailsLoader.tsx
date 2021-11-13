@@ -8,6 +8,7 @@ import { useParams } from '@reach/router';
 import { NftType } from '../utils';
 import NftDetails from './NftDetails';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const NftDetailsLoader = ({ path: _path }: { path: string }) => {
   const params = useParams();
   const { data, isFetched } = useQuery<NftType>(`/punkz/${params.id}`);

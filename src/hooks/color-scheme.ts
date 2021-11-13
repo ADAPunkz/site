@@ -28,10 +28,10 @@ export const attachListener = (pref, setScheme) => {
     const newPref = getPreference(values);
     setScheme(newPref.preference);
     pref.matchMedia.removeListener(listener);
-    // recursion
     // NOTE: we need to attach a new listener to ensure it fires on next change
     unbind = attachListener(newPref, setScheme);
   };
+
   pref.matchMedia.addListener(listener);
   return () => {
     if (unbind) {
@@ -49,12 +49,15 @@ export const useColorScheme = () => {
   const [scheme, setScheme] = useState(initialPreference ? initialPreference.preference : PREFERENCES.NONE);
 
   useEffect(() => {
-    if (!initialPreference) return;
+    if (!initialPreference) {
+      return;
+    }
+
     return attachListener(initialPreference, setScheme);
   }, []);
 
   if ((!isSSR && !('matchMedia' in window)) || scheme === PREFERENCES.NONE) {
-    // can not detect
+    // Can not detect
     return { scheme: PREFERENCES.LIGHT };
   }
 

@@ -103,14 +103,12 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
   );
 };
 
-const Layout = ({ children, margin = 'medium', background = 'background', hideFooter = false }) => {
-  return (
-    <Grommet theme={theme} background={background} themeMode="light" full>
-      <InnerLayout margin={margin} hideFooter={hideFooter}>
-        {children}
-      </InnerLayout>
-    </Grommet>
-  );
-};
+const Layout = ({ children, margin = 'medium', background = 'background', hideFooter = false }) => (
+  <Grommet theme={theme} background={background} themeMode="light" full>
+    <InnerLayout margin={margin} hideFooter={hideFooter}>
+      {children}
+    </InnerLayout>
+  </Grommet>
+);
 
 export default Layout;

@@ -1,4 +1,4 @@
-export const randomIntBetween = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
+export const randomIntBetween = (min: number, max: number) => Math.floor((Math.random() * (max - min)) + min);
 
 export const isSSR: boolean = (() => typeof window === 'undefined')();
 
@@ -16,9 +16,17 @@ export const withOrdinalSuffix = (i: number) => {
   const j = i % 10;
   const k = i % 100;
 
-  if (j == 1 && k != 11) return i + 'st';
-  if (j == 2 && k != 12) return i + 'nd';
-  if (j == 3 && k != 13) return i + 'rd';
+  if (j === 1 && k !== 11) {
+    return i + 'st';
+  }
+
+  if (j === 2 && k !== 12) {
+    return i + 'nd';
+  }
+
+  if (j === 3 && k !== 13) {
+    return i + 'rd';
+  }
 
   return i + 'th';
 };
@@ -34,7 +42,7 @@ export const toQueryString = (params: object) => {
     query += `${key}=${params[key]}&`;
   }
 
-  return query.replace(/\&$/, '');
+  return query.replace(/&$/, '');
 };
 
 export const assetNamesToEndpoints = (endpointPrefix: string, tokenPrefix: string, assetNames: string[]) => {
@@ -57,6 +65,7 @@ export const defaultFilterPayload = {
   type: '',
   mouth: '',
   eyes: '',
+  // eslint-disable-next-line camelcase
   implant_nodes: '',
   head: '',
   accessories: '',

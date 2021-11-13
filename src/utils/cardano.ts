@@ -22,11 +22,9 @@ const CslLoader = new Loader();
 
 const nami = isSSR ? ({} as any) : (window as any).cardano;
 
-const hasNami = !!nami;
+const hasNami = Boolean(nami);
 
-const isEnabled = async () => {
-  return (await nami.isEnabled()) as boolean;
-};
+const isEnabled = async () => (await nami.isEnabled()) as boolean;
 
 const enable = async () => {
   try {
@@ -57,7 +55,7 @@ const getAssetNames = async (policyId: string) => {
   const allAssets = balance.multiasset();
   const assetTypes = allAssets.keys();
 
-  for (var i = 0; i < assetTypes.len(); i++) {
+  for (let i = 0; i < assetTypes.len(); i++) {
     const policyHash = assetTypes.get(i);
     const policyHex = Buffer.from(policyHash.to_bytes()).toString('hex');
 
@@ -68,7 +66,7 @@ const getAssetNames = async (policyId: string) => {
     const assets = allAssets.get(policyHash);
     const assetsKeys = assets.keys();
 
-    for (var j = 0; j < assetsKeys.len(); j++) {
+    for (let j = 0; j < assetsKeys.len(); j++) {
       const assetHash = assetsKeys.get(j);
       const assetHex = Buffer.from(assetHash.name()).toString('hex');
       const assetName = fromHex(assetHex);

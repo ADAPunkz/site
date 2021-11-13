@@ -1,5 +1,4 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { SiteAndIconQuery } from '../../graphql-types';
@@ -54,7 +53,7 @@ const SEO = () => {
       }
       meta={[
         {
-          name: `description`,
+          name: 'description',
           content: metaDescription,
         },
         {
@@ -62,27 +61,27 @@ const SEO = () => {
           content: site.siteMetadata.keywords.join(','),
         },
         {
-          property: `og:title`,
+          property: 'og:title',
           content: site.siteMetadata.title,
         },
         {
-          property: `og:description`,
+          property: 'og:description',
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: 'og:type',
+          content: 'website',
         },
         {
-          name: `twitter:creator`,
+          name: 'twitter:creator',
           content: site.siteMetadata.author,
         },
         {
-          name: `twitter:title`,
+          name: 'twitter:title',
           content: site.siteMetadata.title,
         },
         {
-          name: `twitter:description`,
+          name: 'twitter:description',
           content: metaDescription,
         },
       ].concat(
