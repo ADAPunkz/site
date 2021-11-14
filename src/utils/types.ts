@@ -1,3 +1,5 @@
+import { HeightType, WidthType } from 'grommet/utils';
+
 export type Trait = {
   percent: number;
   value: string;
@@ -34,8 +36,8 @@ export type NftType = {
 
 export type NftProps = {
   metadata: NftType;
-  path?: string;
-  hidePrice?: boolean;
+  width?: WidthType;
+  height?: HeightType;
 };
 
 export type NftApiResponse = {

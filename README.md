@@ -43,6 +43,7 @@ Reading:
 - [React](https://reactjs.org/)
 - [Gatsby](https://www.gatsbyjs.com/docs)
 - [Grommet](https://v2.grommet.io/components)
+- [syled components](https://styled-components.com/)
 - [React Query](https://react-query.tanstack.com/overview)
 - [zustand](https://github.com/pmndrs/zustand)
 

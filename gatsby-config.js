@@ -8,6 +8,7 @@ module.exports = {
     policyId: '76ebe108d0d58ba2ffe6024cf25cf5f6a890f4c61d77ee7911362b14',
     twitter: 'https://twitter.com/ADAPunkz',
     discord: 'https://discord.gg/mFp7PW8zm3',
+    github: 'https://github.com/ADAPunkz',
     keywords: ['ADAPunkz', 'ADA', 'Punkz', 'NFT', 'Cardano', 'CNFT', 'Cryptocurrency', 'Crypto', 'Blockchain', 'Investment', 'Digital', 'Art', 'Generative'],
   },
   plugins: [

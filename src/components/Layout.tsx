@@ -33,8 +33,6 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
         siteMetadata {
           title
           policyId
-          twitter
-          discord
         }
       }
     }

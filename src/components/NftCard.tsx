@@ -1,4 +1,4 @@
-import { Box, Card, CardFooter, Image, Text } from 'grommet';
+import { Box, Card, CardBody, CardFooter, Image, Text } from 'grommet';
 import { Tools } from 'grommet-icons';
 import Tilt from 'react-parallax-tilt';
 import styled from 'styled-components';
@@ -6,10 +6,6 @@ import styled from 'styled-components';
 import { withOrdinalSuffix } from '../utils';
 import { NftProps } from '../utils/types';
 import { ADA } from './icons';
-
-const LimitedBox = styled(Box)`
-  max-width: 384px;
-`;
 
 const Preserve3DTilt = styled(Tilt)`
   transform-style: preserve-3d;
@@ -25,18 +21,20 @@ const TopRaisedBox = styled(RaisedBox)`
 `;
 
 const TopRightRaisedBox = styled(TopRaisedBox)`
-  right: 1rem;
+  right: 1.2rem;
 `;
 
 const TopLeftRaisedBox = styled(TopRaisedBox)`
-  left: 1rem;
+  left: 1.2rem;
 `;
 
-const NftCard = ({ metadata }: NftProps) => (
-  <LimitedBox margin="small">
+const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => (
+  <Box margin="small">
     <Preserve3DTilt tiltMaxAngleX={2} tiltMaxAngleY={2} perspective={750} glareEnable={true} glareMaxOpacity={0.2}>
-      <Card background="white" fill="horizontal" round={false} elevation="small">
-        <Image src={`/images/${metadata.edition}.png`} alt={metadata.name} fill />
+      <Card background="white" round={false} elevation="small">
+        <CardBody width={width} height={height} background="punkz-background-back">
+          <Image src={`/images/${metadata.edition}.png`} alt={metadata.name} fill />
+        </CardBody>
         <CardFooter justify="between" pad="small" height="xxsmall">
           <Text weight="bold">{metadata.name}</Text>
           <Text color="highlight">{withOrdinalSuffix(metadata.rank)}</Text>
@@ -54,7 +52,7 @@ const NftCard = ({ metadata }: NftProps) => (
         </TopRightRaisedBox>
       )}
     </Preserve3DTilt>
-  </LimitedBox>
+  </Box>
 );
 
 export default NftCard;

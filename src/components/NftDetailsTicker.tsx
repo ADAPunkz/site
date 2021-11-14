@@ -1,5 +1,6 @@
-import { Box, Button, Spinner } from 'grommet';
+import { Box, Button, ResponsiveContext, ThemeContext, ThemeType } from 'grommet';
 import { Next, Previous } from 'grommet-icons';
+import { useContext } from 'react';
 
 import { useCursor, useInterval } from '../hooks';
 import { NftType } from '../utils';
@@ -7,6 +8,9 @@ import NftDetails from './NftDetails';
 import SiteHeading from './SiteHeading';
 
 const NftDetailsTicker = ({ title, nfts }: { title: string; nfts: NftType[] }) => {
+  const theme: ThemeType = useContext(ThemeContext);
+  const size = useContext(ResponsiveContext);
+
   const { index, skipForward, skipBackward } = useCursor(nfts.length);
   const stopInterval = useInterval(() => nfts.length && skipForward(), 10000);
 
@@ -39,8 +43,12 @@ const NftDetailsTicker = ({ title, nfts }: { title: string; nfts: NftType[] }) =
         {nfts.length ? (
           <NftDetails metadata={nfts[index]} />
         ) : (
-          <Box background="#333333" width="large" height="medium" align="center" justify="center">
-            <Spinner color="text" />
+          <Box direction="row-responsive" gap="small" pad="small" background="punkz-charcoal">
+            <Box direction="column">
+              <Box width={theme.global.size.medium} height={theme.global.size.medium} />
+              <Box height="xxsmall" />
+            </Box>
+            <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between" />
           </Box>
         )}
       </Box>

@@ -21,8 +21,8 @@ const NftDetails = ({ metadata }: NftProps) => {
   useInterval(() => skipForward(), 3000);
 
   return (
-    <Box direction="row-responsive" gap="small" pad="small" background="#333333">
-      <NftCard metadata={metadata} />
+    <Box direction="row-responsive" gap="small" pad="small" background="punkz-charcoal">
+      <NftCard metadata={metadata} width="medium" height="medium" />
       <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between">
         <Box direction="column" gap="xsmall">
           <AttributeItem name="Edition" value={metadata.name} />

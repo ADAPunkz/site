@@ -46,6 +46,7 @@ const theme: ThemeType = deepMerge(grommet, {
       },
       'punkz-background-front': '#2BCEFF',
       'punkz-background-back': '#19809F',
+      'punkz-charcoal': '#333333',
       'control': 'brand',
       'active-background': 'background-contrast',
       'active-text': 'text-strong',

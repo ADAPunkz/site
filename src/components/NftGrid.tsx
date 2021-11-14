@@ -70,7 +70,7 @@ const NftGrid = ({ query, constrain = false }: { query: string; constrain: boole
             textDecoration: 'none',
           }}
         >
-          <NftCard metadata={item} hidePrice />
+          <NftCard metadata={item} />
         </Link>
       )}
     </InfiniteScroll>
