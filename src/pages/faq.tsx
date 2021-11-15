@@ -32,7 +32,7 @@ const FAQ = () => (
           <AccordionPanel label={<SiteHeading level="5">Rarity chart?</SiteHeading>}>
             <Text margin={textMargin}>
               You can explore the whole ADAPunkz collection by rarity, attributes and price by visiting the <StyledLink to="/explore">Explorer</StyledLink> at
-              the top of this page.
+              the top of this page, or view the overall rarities table at <StyledLink to="/rarity">Rarity</StyledLink>.
             </Text>
           </AccordionPanel>
           <AccordionPanel label={<SiteHeading level="5">What’s in store for the roadmap?</SiteHeading>}>

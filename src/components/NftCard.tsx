@@ -32,7 +32,7 @@ const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => (
   <Box margin="small">
     <Preserve3DTilt tiltMaxAngleX={2} tiltMaxAngleY={2} perspective={750} glareEnable={true} glareMaxOpacity={0.2}>
       <Card background="white" round={false} elevation="small">
-        <CardBody width={width} height={height} background="punkz-background-back">
+        <CardBody width={width === 'medium' ? width : ''} height={height} background="brand">
           <Image src={`/images/${metadata.edition}.png`} alt={metadata.name} fill />
         </CardBody>
         <CardFooter justify="between" pad="small" height="xxsmall">

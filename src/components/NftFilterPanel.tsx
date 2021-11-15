@@ -1,10 +1,17 @@
 import { Box, Form, Select, TextInput } from 'grommet';
+import styled from 'styled-components';
 
 import { attributes } from '../data';
 import { NftFilterForm } from '../utils';
 
+const StyledBox = styled(Box)`
+  & button, & input {
+    border-radius: 0px;
+  }
+`;
+
 const NftFilterPanel = ({ payload, onChange, background = 'brand' }: { payload: NftFilterForm; onChange: (value: NftFilterForm) => void; background?: string }) => (
-  <Box width="450px" background={background} pad="medium" align="center" overflow="auto">
+  <StyledBox width="450px" background={background} pad="medium" align="center" overflow="auto">
     <Form value={payload} onChange={onChange}>
       <Box direction="column" gap="small">
         {/* <TextInput placeholder="edition" /> */}
@@ -33,7 +40,7 @@ const NftFilterPanel = ({ payload, onChange, background = 'brand' }: { payload: 
         <Select placeholder="Accessories" name="accessories" value={payload?.accessories} options={attributes.accessories} clear />
       </Box>
     </Form>
-  </Box>
+  </StyledBox>
 );
 
 export default NftFilterPanel;

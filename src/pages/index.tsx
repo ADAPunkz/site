@@ -1,5 +1,5 @@
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, Button } from 'grommet';
+import { Anchor, Box, Button, Text } from 'grommet';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -8,7 +8,7 @@ import Layout from '../components/Layout';
 import NftDetailsTicker from '../components/NftDetailsTicker';
 import SiteHeading from '../components/SiteHeading';
 import { useStore } from '../hooks/store';
-import { NftApiResponse } from '../utils';
+import { NftApiResponse, cardano } from '../utils';
 
 enum Collections {
   Recent,
@@ -40,11 +40,16 @@ const Index = () => {
           <AssetsLoader assetNames={assets} />
         )}
         <Box fill="horizontal" direction="row" justify="end">
-          <Box width="small">
-            {assets.length > 0 && (
+          {!cardano.hasNami && (
+            <Box margin={{ vertical: 'small' }}>
+              <Text>Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> on Chrome, Brave or Edge to connect and view your collection</Text>
+            </Box>
+          )}
+          {assets.length > 0 && (
+            <Box width="small">
               <Button label={collection === Collections.Owned ? 'Show Recent' : 'Show Mine'} color="white" onClick={onToggle} margin={{ vertical: 'small' }} />
-            )}
-          </Box>
+            </Box>
+          )}
         </Box>
         <Box direction="column" justify="center" align="center" margin="medium">
           <StaticImage src="../images/home.png" alt="ADAPunkz Home" width={210} placeholder="none" loading="eager" objectFit="contain" />

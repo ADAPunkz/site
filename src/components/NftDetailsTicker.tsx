@@ -1,4 +1,4 @@
-import { Box, Button, ResponsiveContext, ThemeContext, ThemeType } from 'grommet';
+import { Box, Button, ResponsiveContext, Spinner, ThemeContext, ThemeType } from 'grommet';
 import { Next, Previous } from 'grommet-icons';
 import { useContext } from 'react';
 
@@ -44,11 +44,15 @@ const NftDetailsTicker = ({ title, nfts }: { title: string; nfts: NftType[] }) =
           <NftDetails metadata={nfts[index]} />
         ) : (
           <Box direction="row-responsive" gap="small" pad="small" background="punkz-charcoal">
-            <Box direction="column">
+            <Box direction="column" margin="small">
               <Box width={theme.global.size.medium} height={theme.global.size.medium} />
               <Box height="xxsmall" />
             </Box>
-            <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between" />
+            <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between">
+              <Box direction="row" fill="horizontal" justify="end">
+                <Spinner color="white" />
+              </Box>
+            </Box>
           </Box>
         )}
       </Box>
