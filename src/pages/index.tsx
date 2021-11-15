@@ -39,7 +39,7 @@ const Index = () => {
         ) : (
           <AssetsLoader assetNames={assets} />
         )}
-        <Box fill="horizontal" direction="row" justify="end">
+        <Box direction="row" justify="end">
           {!cardano.hasNami && (
             <Box margin={{ vertical: 'small' }}>
               <Text>Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> on Chrome, Brave or Edge to connect and view your collection</Text>

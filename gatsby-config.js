@@ -55,6 +55,5 @@ module.exports = {
     'gatsby-plugin-why-did-you-render',
     'gatsby-plugin-no-sourcemaps',
     'gatsby-plugin-gatsby-cloud',
-    'gatsby-plugin-netlify',
   ],
 };
