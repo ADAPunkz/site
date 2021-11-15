@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://focused-tereshkova-6d95b3.netlify.app/',
+    siteUrl: 'https://adapunkz.io',
     title: 'ADAPunkz',
     author: 'ADAPunkz',
     description: 'Anonymity. Unity. Revolution',
