@@ -12,7 +12,7 @@ import { useLocation } from '@reach/router';
 import { SiteQuery } from '../../graphql-types';
 import { dispatch } from '../hooks';
 import theme from '../theme';
-import { EVENTS, cardano, isSSR } from '../utils';
+import { EVENTS } from '../utils';
 import ConnectButton from './ConnectButton';
 import NavBar from './NavBar';
 import SEO from './SEO';
@@ -69,7 +69,7 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
               <Button icon={<Filter size="24px" color="white" />} hoverIndicator onClick={() => dispatch({ type: EVENTS.OPEN_FILTER_PANEL })} />
             )}
             <Box direction="row" justify="end" fill="horizontal">
-              {!isSSR && size !== 'small' && cardano.hasNami && <ConnectButton policyId={site.siteMetadata.policyId} />}
+              {size !== 'small' && <ConnectButton policyId={site.siteMetadata.policyId} />}
               <SocialsBar size="20px" />
               {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}
             </Box>
