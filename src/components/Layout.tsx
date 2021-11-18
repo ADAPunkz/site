@@ -70,7 +70,9 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
             )}
             <Box direction="row" justify="end" fill="horizontal">
               {size !== 'small' && cardano.hasNami && <ConnectButton policyId={site.siteMetadata.policyId} />}
-              <SocialsBar size="20px" />
+              <Box>
+                <SocialsBar size="20px" />
+              </Box>
               {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}
             </Box>
           </Box>
