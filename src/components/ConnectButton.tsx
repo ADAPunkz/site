@@ -3,7 +3,6 @@ import MiddleEllipsis from 'react-middle-ellipsis';
 import styled from 'styled-components';
 
 import { useNami } from '../hooks';
-import { cardano } from '../utils';
 
 const LimitedText = styled(Text)`
   max-width: 30px;
@@ -13,7 +12,7 @@ const LimitedText = styled(Text)`
 const ConnectButton = ({ policyId }: { policyId?: string }) => {
   const { address, isEnabled, enable, loading } = useNami(policyId);
 
-  return cardano.hasNami ? (
+  return (
     <Box justify="center" width="small">
       <Button
         label={
@@ -31,7 +30,7 @@ const ConnectButton = ({ policyId }: { policyId?: string }) => {
             <Text>Connect</Text>
           )
         }
-        disabled={Boolean(address) || isEnabled}
+        disabled={Boolean(address) || isEnabled || !isEnabled}
         size="small"
         color="white"
         primary
@@ -39,7 +38,7 @@ const ConnectButton = ({ policyId }: { policyId?: string }) => {
         onClick={enable}
       />
     </Box>
-  ) : null;
+  );
 };
 
 export default ConnectButton;
