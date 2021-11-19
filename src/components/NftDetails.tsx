@@ -36,7 +36,7 @@ const NftDetails = ({ metadata }: NftProps) => {
           <AttributeItem name="Implant Nodes" value={`${metadata.implant_nodes.value} (${metadata.implant_nodes.percent}%)`} />
           <AttributeItem name="Accessories" value={`${metadata.accessories.value} (${metadata.accessories.percent}%)`} />
         </Box>
-        {metadata.offers.length > 0 && (
+        {metadata.offers.length > 0 && metadata.offers[index] && (
           <Box direction="row-responsive" gap="small" justify="between">
             <Text weight="bold">
               Offers ( {index + 1} / {metadata.offers.length} )
