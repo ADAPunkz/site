@@ -1,5 +1,3 @@
-import '@fontsource/titillium-web';
-
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Button, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
@@ -23,7 +21,8 @@ import SocialsBar from './SocialsBar';
 const StickyHeader = styled(Header)`
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 5;
+  background-image: linear-gradient(#1b4c8c, rgba(0, 0, 0, 0));
 `;
 
 const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
@@ -46,29 +45,30 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
     <>
       <SEO />
       <Box direction="column" justify="between" fill="vertical" flex="grow" overflow="auto">
-        <StickyHeader background="background" justify="start" pad="medium" gap="large" fill="horizontal">
+        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal">
           <Box direction="row" align="center" gap="small">
             <Link to="/">
               <Box direction="row" gap="small" align="center">
-                <StaticImage
-                  src="../images/icon.png"
-                  alt={`${site.siteMetadata.title} Icon`}
-                  placeholder="none"
-                  layout="fixed"
-                  width={48}
-                  height={48}
-                  loading="eager"
-                />
+                <StaticImage src="../images/icon.png" alt={`${site.siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
               </Box>
             </Link>
             {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
           </Box>
           <Box direction="row" fill="horizontal" align="center" justify="between">
             {size !== 'small' && <NavBar />}
-            {size === 'small' && location.pathname.includes('explore') && (
-              <Button icon={<Filter size="24px" color="white" />} hoverIndicator onClick={() => dispatch({ type: EVENTS.OPEN_FILTER_PANEL })} />
-            )}
             <Box direction="row" justify="end" fill="horizontal">
+              {location.pathname.includes('explore') && (
+                <Button
+                  label={size === 'small' ? '' : 'Filter'}
+                  icon={<Filter size="24px" color="white" />}
+                  hoverIndicator
+                  plain
+                  reverse
+                  margin={{ horizontal: 'small' }}
+                  style={{ padding: '12px' }}
+                  onClick={() => dispatch({ type: EVENTS.OPEN_FILTER_PANEL })}
+                />
+              )}
               {size !== 'small' && <ConnectButton policyId={site.siteMetadata.policyId} />}
               <SocialsBar size="20px" />
               {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}

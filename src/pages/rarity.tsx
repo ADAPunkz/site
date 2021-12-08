@@ -37,7 +37,7 @@ const Rarity = () => (
         </Box>
       </Box>
       <Box width="medium" margin={{ top: 'medium' }} pad="small" align="center" justify="center">
-        <Text>Rarity layout inspired by Craven#0001</Text>
+        <Text textAlign="center">Rarity layout inspired by Craven#0001</Text>
       </Box>
     </Box>
   </Layout>

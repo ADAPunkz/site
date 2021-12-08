@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Grid, InfiniteScroll, Spinner } from 'grommet';
@@ -12,19 +11,13 @@ import { EVENTS, NftApiResponse, NftType } from '../utils';
 import NftCard from './NftCard';
 import SiteHeading from './SiteHeading';
 
-const ConstrainedGrid = styled(Grid)`
-  max-height: calc(100vh - 120px);
-  padding: 24px 24px 0px 24px;
-  overflow: auto;
-`;
-
 const IndicateHover = styled.div`
   &:hover {
     cursor: pointer;
   }
 `;
 
-const NftGrid = ({ query, constrain = false }: { query: string; constrain: boolean }) => {
+const NftGrid = ({ query }: { query: string; }) => {
   const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse>(
     ['punkz', 'paged'],
     async ({ pageParam = 1 }) => {
@@ -60,22 +53,6 @@ const NftGrid = ({ query, constrain = false }: { query: string; constrain: boole
     );
   }
 
-  const scroller = (
-    <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
-      {(item: NftType) => (
-        <Link
-          key={item.edition}
-          to={`/punk/${item.edition}`}
-          style={{
-            textDecoration: 'none',
-          }}
-        >
-          <NftCard metadata={item} />
-        </Link>
-      )}
-    </InfiniteScroll>
-  );
-
   return (
     <>
       {items.length === 0 ? (
@@ -87,13 +64,15 @@ const NftGrid = ({ query, constrain = false }: { query: string; constrain: boole
             </SiteHeading>
           </Box>
         </Box>
-      ) : constrain ? (
-        <ConstrainedGrid fill="horizontal" columns="small" gap="medium">
-          {scroller}
-        </ConstrainedGrid>
       ) : (
         <Grid fill="horizontal" columns="small" gap="medium" margin="medium">
-          {scroller}
+          <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
+            {(item: NftType) => (
+              <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
+                <NftCard metadata={item} />
+              </Link>
+            )}
+          </InfiniteScroll>
         </Grid>
       )}
     </>

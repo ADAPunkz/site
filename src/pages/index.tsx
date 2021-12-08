@@ -42,7 +42,7 @@ const Index = () => {
         <Box direction="row" justify="end">
           {!cardano.hasNami && (
             <Box margin={{ vertical: 'small' }}>
-              <Text>Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> on Chrome, Brave or Edge to connect and view your collection</Text>
+              <Text>Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> to connect and view your collection</Text>
             </Box>
           )}
           {assets.length > 0 && (

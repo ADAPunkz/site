@@ -7,24 +7,24 @@ import { attributes } from '../data';
 import { NftFilterForm } from '../utils';
 
 const StyledBox = styled(Box)`
-  & button, & input {
+  & button,
+  & input {
     border-radius: 0px;
+    color: black !important;
   }
 `;
 
-const NftFilterPanel = ({ payload, onChange, background = 'brand' }: { payload: NftFilterForm; onChange: (value: NftFilterForm) => void; background?: string }) => {
+const NftFilterPanel = ({ payload, onChange }: { payload: NftFilterForm; onChange: (value: NftFilterForm) => void; background?: string }) => {
   const [edition, setEdition] = useState('');
 
   const onClick = () => {
-    if (!edition) {
-      return;
+    if (edition) {
+      navigate(`/punk/${edition}`);
     }
-
-    navigate(`/punk/${edition}`);
   };
 
   return (
-    <StyledBox width="450px" background={background} pad="medium" align="center" overflow="auto">
+    <StyledBox width="450px" pad="medium" align="center" overflow="auto">
       <Form value={payload} onChange={onChange}>
         <Box direction="column" gap="small">
           <Text margin={{ vertical: 'small' }}>Go direct to a specific Punk:</Text>

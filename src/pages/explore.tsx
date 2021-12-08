@@ -1,5 +1,5 @@
-import { Box, Layer, ResponsiveContext } from 'grommet';
-import { useContext, useEffect, useState } from 'react';
+import { Box, Layer } from 'grommet';
+import { useEffect, useState } from 'react';
 import shallow from 'zustand/shallow';
 
 import Layout from '../components/Layout';
@@ -19,8 +19,6 @@ const InnerExplore = () => {
   const [showDetailsOverlay, setShowDetailsOverlay] = useState(false);
   const [selectedNft, setSelectedNft] = useState<NftType>();
 
-  const size = useContext(ResponsiveContext);
-
   const onChange = (nextPayload: NftFilterForm) => setPayload(nextPayload);
 
   useEffect(() => {
@@ -39,11 +37,10 @@ const InnerExplore = () => {
   return (
     <>
       <Box direction="row" fill justify="end">
-        <NftGrid query={query} constrain={size !== 'small'} />
-        {size !== 'small' && <NftFilterPanel payload={payload} background="white" onChange={onChange} />}
+        <NftGrid query={query} />
       </Box>
       {showFilterOverlay && (
-        <Layer animate modal full position="right" onClickOutside={() => setShowFilterOverlay(false)}>
+        <Layer animate modal full="vertical" position="right" onClickOutside={() => setShowFilterOverlay(false)}>
           <Sidebar fill close={() => setShowFilterOverlay(false)}>
             <NftFilterPanel payload={payload} onChange={onChange} />
           </Sidebar>
@@ -61,7 +58,7 @@ const InnerExplore = () => {
 };
 
 const Explore = () => (
-  <Layout background="background-back" margin="none" hideFooter>
+  <Layout margin="none" hideFooter>
     <InnerExplore />
   </Layout>
 );

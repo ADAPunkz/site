@@ -9,8 +9,8 @@ const theme: ThemeType = deepMerge(grommet, {
         light: '#00AADD',
       },
       'background': {
-        dark: '#00AADD',
-        light: '#00AADD',
+        dark: '#1B4C8C',
+        light: '#1B4C8C',
       },
       'background-back': {
         dark: '#111111',
@@ -79,8 +79,13 @@ const theme: ThemeType = deepMerge(grommet, {
         xsmall: '0px 1px 2px rgba(0, 0, 0, 0.20)',
       },
     },
+    breakpoints: {
+      small: {
+        value: 1080
+      }
+    },
     font: {
-      family: '"Titillium Web"',
+      family: 'VCR',
     },
     active: {
       background: 'active-background',

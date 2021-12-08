@@ -22,7 +22,7 @@ const FAQ = () => (
             </Text>
           </AccordionPanel>
           <AccordionPanel label={<SiteHeading level="5">When is the Mint?</SiteHeading>}>
-            <Text margin={textMargin} wordBreak="break-all">
+            <Text margin={textMargin}>
               Minting has ended, sales are now taking place on secondary markets.
             </Text>
           </AccordionPanel>

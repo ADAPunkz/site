@@ -1,0 +1,7 @@
+.cache/
+.git/
+.husky/
+node_modules/
+public/
+static/
+graphql-types.ts

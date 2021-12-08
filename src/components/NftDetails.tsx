@@ -9,7 +9,7 @@ import { ADA } from './icons';
 
 const AttributeItem = ({ name, value }: { name: string; value: string }) => (
   <Box direction="row-responsive" gap="xsmall">
-    <Text weight="bold">{name}</Text>
+    <Text color="text-weak" weight="bold">{name}</Text>
     <Text>{value}</Text>
   </Box>
 );
@@ -21,9 +21,9 @@ const NftDetails = ({ metadata }: NftProps) => {
   useInterval(() => skipForward(), 3000);
 
   return (
-    <Box direction="row-responsive" gap="small" pad="small" background="punkz-charcoal">
+    <Box direction="row-responsive" gap="small">
       <NftCard metadata={metadata} width="medium" height="medium" />
-      <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between">
+      <Box width={size === 'small' ? '' : '420px'} direction="column" pad="small" gap="medium" justify="between" background="punkz-charcoal">
         <Box direction="column" gap="xsmall">
           <AttributeItem name="Edition" value={metadata.name} />
           <AttributeItem name="Score" value={metadata.score.toString()} />
@@ -39,7 +39,7 @@ const NftDetails = ({ metadata }: NftProps) => {
         {metadata.offers.length > 0 && metadata.offers[index] && (
           <Box direction="row-responsive" gap="small" justify="between">
             <Text weight="bold">
-              Offers ( {index + 1} / {metadata.offers.length} )
+              Offer {index + 1} / {metadata.offers.length}
             </Text>
             <Box direction="row" align="center" gap="xsmall">
               <ADA size="18px" />
@@ -50,7 +50,12 @@ const NftDetails = ({ metadata }: NftProps) => {
         )}
         {metadata.onSale && (
           <Box direction="row" gap="small" fill="horizontal" justify="between" align="center">
-            <Text>Listed {DateTime.fromISO(metadata.listedAt, { zone: 'UTC' }).toRelative()}</Text>
+            <Text>
+              Listed{' '}
+              {DateTime.fromISO(metadata.listedAt, {
+                zone: 'UTC',
+              }).toRelative()}
+            </Text>
             <Button
               icon={<ADA size="20px" />}
               label={metadata.salePrice}

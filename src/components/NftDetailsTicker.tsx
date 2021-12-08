@@ -43,12 +43,12 @@ const NftDetailsTicker = ({ title, nfts }: { title: string; nfts: NftType[] }) =
         {nfts.length ? (
           <NftDetails metadata={nfts[index]} />
         ) : (
-          <Box direction="row-responsive" gap="small" pad="small" background="punkz-charcoal">
-            <Box direction="column" margin="small">
+          <Box direction="row-responsive" gap="small">
+            <Box direction="column" background="background-back" elevation="small">
               <Box width={theme.global.size.medium} height={theme.global.size.medium} />
               <Box height="xxsmall" />
             </Box>
-            <Box width={size === 'small' ? '' : '420px'} direction="column" margin="small" gap="medium" justify="between">
+            <Box width={size === 'small' ? '' : '420px'} direction="column" pad="small" gap="medium" justify="between" background="punkz-charcoal">
               <Box direction="row" fill="horizontal" justify="end">
                 <Spinner color="white" />
               </Box>
