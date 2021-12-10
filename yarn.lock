@@ -10152,10 +10152,10 @@ react-middle-ellipsis@^1.2.1:
   resolved "https://registry.npmjs.org/react-middle-ellipsis/-/react-middle-ellipsis-1.2.1.tgz"
   integrity sha512-BUQWVXIWwkY7qBqZx0qyeCnPIh188t0lLS0ftfBsU41HB6k769HyBwE23eP+qNXr4vEnmKTEmlicrypVdWYs0w==
 
-react-query@^3.34.0:
-  version "3.34.0"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.0.tgz#43477ac6d117d850354e6db80dcca6d5c1b36728"
-  integrity sha512-g6L90FeCLzz6+53CbVKYJALBiZR5icOYPjqGGiNgHNeufcnddLZaQGE9wheclk10k6g+o+Dd4/jAtswhjVblXw==
+react-query@^3.34.2:
+  version "3.34.2"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.2.tgz#ce07b97230575981f98bb8cac7e0f2659c491246"
+  integrity sha512-Y817mmZa65kysW5YloRiC6/3zj/S7/dphUOfK4ujqVcKtl7/NkiMqJv3hjnLCS9cYeOA4pU8LmYQCSPQALrkcg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"
@@ -11906,10 +11906,10 @@ typedarray@^0.0.6:
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.2.tgz#8ac1fba9f52256fdb06fb89e4122fa6a346c2998"
-  integrity sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==
+typescript@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.3.tgz#afaa858e68c7103317d89eb90c5d8906268d353c"
+  integrity sha512-eVYaEHALSt+s9LbvgEv4Ef+Tdq7hBiIZgii12xXJnukryt3pMgJf6aKhoCZ3FWQsu6sydEnkg11fYXLzhLBjeQ==
 
 ua-parser-js@^0.7.30:
   version "0.7.31"
