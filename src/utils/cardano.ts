@@ -53,6 +53,11 @@ const getAssetNames = async (policyId: string) => {
   const csl = CslLoader.CSL;
   const balance = csl.Value.from_bytes(bytes);
   const allAssets = balance.multiasset();
+
+  if (!allAssets) {
+    return assetNames;
+  }
+
   const assetTypes = allAssets.keys();
 
   for (let i = 0; i < assetTypes.len(); i++) {

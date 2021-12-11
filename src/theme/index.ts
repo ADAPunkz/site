@@ -44,6 +44,7 @@ const theme: ThemeType = deepMerge(grommet, {
         dark: '#444444',
         light: '#CCCCCC',
       },
+      'terminal': '#00ff00',
       'punkz-background-front': '#2BCEFF',
       'punkz-background-back': '#19809F',
       'punkz-charcoal': '#333333',
@@ -81,8 +82,8 @@ const theme: ThemeType = deepMerge(grommet, {
     },
     breakpoints: {
       small: {
-        value: 1080
-      }
+        value: 1080,
+      },
     },
     font: {
       family: 'VCR',

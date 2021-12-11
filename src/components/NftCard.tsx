@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { withOrdinalSuffix } from '../utils';
 import { NftProps } from '../utils/types';
-import HoverGlitch from './HoverGlitch';
+import GlitchImage from './GlitchImage';
 import { ADA } from './icons';
 
 const TopBox = styled(Box)`
@@ -24,7 +24,7 @@ const TopLeftBox = styled(TopBox)`
 
 const HoverCard = styled(Card)`
   position: relative;
-  transition: transform .2s;
+  transition: transform 0.2s;
   &:hover .glitchLayers {
     display: block;
   }
@@ -36,7 +36,7 @@ const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => {
     <Box width={size === 'small' ? '' : width}>
       <HoverCard elevation="small" background="background-back" round={false}>
         <CardBody height={size === 'small' ? '' : height} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
-          <HoverGlitch src={`/images/${metadata.edition}.png`} alt={metadata.name} fit="cover" fill />
+          <GlitchImage src={`/images/${metadata.edition}.png`} alt={metadata.name} fit="cover" fill />
           {metadata.isAuction && (
             <TopLeftBox direction="row" align="center" gap="xsmall">
               <Tools color="white" size="18px" />

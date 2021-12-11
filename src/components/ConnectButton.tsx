@@ -19,16 +19,16 @@ const ConnectButton = ({ policyId }: { policyId?: string }) => {
         label={
           address ? (
             <MiddleEllipsis>
-              <LimitedText>{address}</LimitedText>
+              <LimitedText size="small">{address}</LimitedText>
             </MiddleEllipsis>
           ) : loading ? (
             <Box fill="horizontal" align="center">
               <Spinner />
             </Box>
           ) : isEnabled ? (
-            <Text>Connected</Text>
+            <Text size="small">Connected</Text>
           ) : (
-            <Text>Connect</Text>
+            <Text size="small">Connect</Text>
           )
         }
         disabled={Boolean(address) || isEnabled || !cardano.hasNami}

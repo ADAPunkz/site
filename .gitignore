@@ -3,3 +3,5 @@ node_modules/
 public
 yarn-error.log
 graphql-types.ts
+.DS_Store
+.env*

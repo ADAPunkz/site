@@ -95,15 +95,15 @@ const GlitchLayer = styled(GlitchLayerContainer)`
   background-position: 0 0;
   &:nth-child(1) {
     transform: translateX(-5%);
-    animation: ${glitchAnimation1} .25s infinite linear alternate;
+    animation: ${glitchAnimation1} 0.25s infinite linear alternate;
   }
   &:nth-child(2) {
     transform: translateX(3%) translateY(3%);
-    animation: ${glitchAnimation2} .6s -0.2s infinite linear alternate;
+    animation: ${glitchAnimation2} 0.6s -0.2s infinite linear alternate;
   }
   &:nth-child(3) {
     transform: translateX(5%);
-    animation: ${glitchAnimationFlash} .5s infinite linear;
+    animation: ${glitchAnimationFlash} 0.5s infinite linear;
   }
 `;
 
@@ -127,15 +127,15 @@ const Glitch = styled.div`
   }
 `;
 
-const HoverGlitch = (props: ImageExtendedProps) => (
+const GlitchImage = (props: ImageExtendedProps) => (
   <Glitch>
     <Image {...props} />
     <GlitchLayers className="glitchLayers">
       <GlitchLayer color="#ff0000" src={props.src} />
-      <GlitchLayer color="#00ff00"  src={props.src} />
+      <GlitchLayer color="#00ff00" src={props.src} />
       <GlitchLayer color="#0000ff" src={props.src} />
     </GlitchLayers>
   </Glitch>
 );
 
-export default HoverGlitch;
+export default GlitchImage;
