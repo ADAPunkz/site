@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Box, Button, ResponsiveContext, Text } from 'grommet';
 import { Accessibility, Announce, Cpu, Image, Inspect, LineChart, Sort, Tag, User, View } from 'grommet-icons';
 import { DateTime } from 'luxon';
 import { useContext, useState } from 'react';
 
+import BlinkingCursor from '../components/BlinkingCursor';
 import { useCursor, useInterval } from '../hooks';
 import { NftProps } from '../utils/types';
 import NftCard from './NftCard';
@@ -18,11 +20,9 @@ const AttributeItem = ({ name, icon, value }: { name: string; icon: JSX.Element;
 
 const NftDetails = ({ metadata }: NftProps) => {
   const size = useContext(ResponsiveContext);
-  const [showTerminal, setShowTerminal] = useState(true);
   const { index, skipForward } = useCursor(metadata?.offers?.length);
 
   useInterval(() => skipForward(), 3000);
-  useInterval(() => setShowTerminal(!showTerminal), 1000);
 
   return (
     <Box direction="row-responsive" gap="small">
@@ -39,9 +39,7 @@ const NftDetails = ({ metadata }: NftProps) => {
           <AttributeItem name="Mouth" icon={<Announce color="terminal" />} value={`${metadata.mouth.value} (${metadata.mouth.percent}%)`} />
           <AttributeItem name="Implant Nodes" icon={<Cpu color="terminal" />} value={`${metadata.implant_nodes.value} (${metadata.implant_nodes.percent}%)`} />
           <AttributeItem name="Accessories" icon={<Inspect color="terminal" />} value={`${metadata.accessories.value} (${metadata.accessories.percent}%)`} />
-          <Box height="xxsmall">
-            <Text color="terminal">{showTerminal && '_'}</Text>
-          </Box>
+          <BlinkingCursor color="terminal" />
         </Box>
         {metadata.offers.length > 0 && metadata.offers[index] && (
           <Box direction="row-responsive" gap="small" justify="between">
