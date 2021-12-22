@@ -41,7 +41,7 @@
     "gatsby-plugin-why-did-you-render": "^2.0.0",
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
-    "grommet": "https://github.com/grommet/grommet/tarball/stable",
+    "grommet": "^2.19.1",
     "grommet-icons": "^4.7.0",
     "luxon": "^2.2.0",
     "react": "^17.0.2",
