@@ -136,6 +136,11 @@ const theme: ThemeType = deepMerge(grommet, {
       backgroundColor: 'white',
     },
   },
+  tip: {
+    content: {
+      background: 'background-back'
+    }
+  }
 });
 
 export default theme;

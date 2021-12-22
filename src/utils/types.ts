@@ -7,7 +7,7 @@ export type Trait = {
 
 export type Offer = {
   user: string;
-  offer: number;
+  value: number;
   expires: string;
 };
 
@@ -89,6 +89,11 @@ export type NftFilterForm = {
   maxPrice: string;
   sort: string;
   direction: string;
+};
+
+export type AddressBalance = {
+  address: string;
+  balance: number;
 };
 
 export type SiteState = {

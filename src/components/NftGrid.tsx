@@ -17,7 +17,7 @@ const IndicateHover = styled.div`
   }
 `;
 
-const NftGrid = ({ query }: { query: string; }) => {
+const NftGrid = ({ query }: { query: string }) => {
   const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse>(
     ['punkz', 'paged'],
     async ({ pageParam = 1 }) => {
@@ -48,7 +48,7 @@ const NftGrid = ({ query }: { query: string; }) => {
   if (!data || (isRefetching && !isFetchingNextPage)) {
     return (
       <Box fill="horizontal" justify="center" align="center">
-        <Spinner color="brand" size="large" />
+        <Spinner color="terminal" size="large" />
       </Box>
     );
   }
