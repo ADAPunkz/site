@@ -7,7 +7,7 @@ import AssetsLoader from '../components/AssetsLoader';
 import Layout from '../components/Layout';
 import NftDetailsTicker from '../components/NftDetailsTicker';
 import SiteHeading from '../components/SiteHeading';
-import { useStore } from '../hooks/store';
+import { useStore } from '../hooks';
 import { NftApiResponse, cardano } from '../utils';
 
 enum Collections {
@@ -34,15 +34,13 @@ const Index = () => {
   return (
     <Layout>
       <Box direction="column">
-        {collection === Collections.Recent || assets.length < 1 ? (
-          <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} />
-        ) : (
-          <AssetsLoader assetNames={assets} />
-        )}
+        {collection === Collections.Recent || assets.length < 1 ? <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} /> : <AssetsLoader assetNames={assets} />}
         <Box direction="row" justify="end">
           {!cardano.hasNami && (
             <Box margin={{ vertical: 'small' }}>
-              <Text>Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> to connect and view your collection</Text>
+              <Text>
+                Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> to connect and view your collection
+              </Text>
             </Box>
           )}
           {assets.length > 0 && (

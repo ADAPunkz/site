@@ -1,4 +1,4 @@
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Button, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
 import { Filter, Menu } from 'grommet-icons';
@@ -7,8 +7,7 @@ import styled from 'styled-components';
 
 import { useLocation } from '@reach/router';
 
-import { SiteQuery } from '../../graphql-types';
-import { dispatch } from '../hooks';
+import { dispatch, useSiteMetadata } from '../hooks';
 import theme from '../theme';
 import { EVENTS } from '../utils';
 import ConnectButton from './ConnectButton';
@@ -26,18 +25,8 @@ const StickyHeader = styled(Header)`
 `;
 
 const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
-  const { site } = useStaticQuery<SiteQuery>(graphql`
-    query Site {
-      site {
-        siteMetadata {
-          title
-          policyId
-        }
-      }
-    }
-  `);
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
   const location = useLocation();
 
@@ -49,7 +38,7 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
           <Box direction="row" align="center" gap="small">
             <Link to="/">
               <Box direction="row" gap="small" align="center">
-                <StaticImage src="../images/icon.png" alt={`${site.siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
+                <StaticImage src="../images/icon.png" alt={`${siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
               </Box>
             </Link>
             {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
@@ -69,7 +58,7 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
                   onClick={() => dispatch({ type: EVENTS.OPEN_FILTER_PANEL })}
                 />
               )}
-              {size !== 'small' && <ConnectButton policyId={site.siteMetadata.policyId} />}
+              {size !== 'small' && <ConnectButton policyId={siteMetadata.policyId} />}
               <SocialsBar size="20px" />
               {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}
             </Box>
@@ -82,10 +71,10 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
           <Footer direction="column" gap="small" align="center" justify="center" margin="medium">
             <SocialsBar />
             <Text textAlign="center" wordBreak="break-all">
-              policyID: {site.siteMetadata.policyId}
+              policyID: {siteMetadata.policyId}
             </Text>
             <Text size="small" textAlign="center">
-              {site.siteMetadata.title} CNFTs
+              {siteMetadata.title} CNFTs
             </Text>
           </Footer>
         )}

@@ -1,21 +1,14 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
-import { SiteAndIconQuery } from '../../graphql-types';
+import { IconQuery } from '../../graphql-types';
+import { useSiteMetadata } from '../hooks/site';
 
 const SEO = () => {
-  const { site, file } = useStaticQuery<SiteAndIconQuery>(
+  const siteMetadata = useSiteMetadata();
+  const { file } = useStaticQuery<IconQuery>(
     graphql`
-      query SiteAndIcon {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            keywords
-            siteUrl
-          }
-        }
+      query Icon {
         file(name: { eq: "icon" }) {
           childImageSharp {
             resize(width: 500) {
@@ -29,18 +22,18 @@ const SEO = () => {
     `,
   );
 
-  const metaDescription = site.siteMetadata.description;
+  const metaDescription = siteMetadata.description;
   const metaImage = file;
-  const image = `${site.siteMetadata.siteUrl}${file.childImageSharp.resize.src}`;
-  const canonical = site.siteMetadata.siteUrl;
+  const image = `${siteMetadata.siteUrl}${file.childImageSharp.resize.src}`;
+  const canonical = siteMetadata.siteUrl;
 
   return (
     <Helmet
       htmlAttributes={{
         lang: 'en',
       }}
-      title={site.siteMetadata.title}
-      titleTemplate={site.siteMetadata.title}
+      title={siteMetadata.title}
+      titleTemplate={siteMetadata.title}
       link={
         canonical
           ? [
@@ -58,11 +51,11 @@ const SEO = () => {
         },
         {
           name: 'keywords',
-          content: site.siteMetadata.keywords.join(','),
+          content: siteMetadata.keywords.join(','),
         },
         {
           property: 'og:title',
-          content: site.siteMetadata.title,
+          content: siteMetadata.title,
         },
         {
           property: 'og:description',
@@ -74,11 +67,11 @@ const SEO = () => {
         },
         {
           name: 'twitter:creator',
-          content: site.siteMetadata.author,
+          content: siteMetadata.author,
         },
         {
           name: 'twitter:title',
-          content: site.siteMetadata.title,
+          content: siteMetadata.title,
         },
         {
           name: 'twitter:description',

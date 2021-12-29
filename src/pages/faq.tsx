@@ -35,7 +35,7 @@ const FAQ = () => (
           </AccordionPanel>
           <AccordionPanel label={<SiteHeading level="5">What’s in store for the roadmap?</SiteHeading>}>
             <Text margin={textMargin}>
-              Our full roadmap breakdown can be view at <StyledLink to="/roadmap">Roadmap</StyledLink>
+              Our full roadmap breakdown can be viewed at <StyledLink to="/roadmap">Roadmap</StyledLink>
             </Text>
           </AccordionPanel>
           <AccordionPanel label={<SiteHeading level="5">Where can I view my NFT?</SiteHeading>}>

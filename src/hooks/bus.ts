@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 
-interface EventAction {
-  type: string;
-  [key: string]: any;
-}
+import { EventAction } from '../utils';
 
 let subscribers = [];
 
@@ -33,6 +30,7 @@ export const dispatch = (event: EventAction) => {
 };
 
 export const useBus = (type: string, callback: (event: EventAction) => void, deps: any[] = []) => {
-  useEffect(() => subscribe(type, callback), [...deps, callback, type]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => subscribe(type, callback), [callback, type, ...deps]);
   return dispatch;
 };

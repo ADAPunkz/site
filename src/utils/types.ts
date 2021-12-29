@@ -96,6 +96,11 @@ export type AddressBalance = {
   balance: number;
 };
 
+export type EventAction = {
+  type: string;
+  [key: string]: any;
+}
+
 export type SiteState = {
   address: string;
   setAddress: (to: string) => void;

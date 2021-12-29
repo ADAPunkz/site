@@ -8,7 +8,7 @@ import NftFilterPanel from '../components/NftFilterPanel';
 import NftGrid from '../components/NftGrid';
 import Sidebar from '../components/Sidebar';
 import { useBus } from '../hooks';
-import { useStore } from '../hooks/store';
+import { useStore } from '../hooks';
 import { EVENTS, NftFilterForm, NftType, toQueryString } from '../utils';
 
 const InnerExplore = () => {

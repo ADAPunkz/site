@@ -86,7 +86,7 @@ const theme: ThemeType = deepMerge(grommet, {
       },
     },
     font: {
-      family: 'VCR',
+      family: 'JetBrainsMono',
     },
     active: {
       background: 'active-background',
@@ -127,6 +127,11 @@ const theme: ThemeType = deepMerge(grommet, {
     border: {
       radius: '0px',
     },
+  },
+  heading: {
+    font: {
+      family: 'VCR'
+    }
   },
   select: {
     background: 'white',

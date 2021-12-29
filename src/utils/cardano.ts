@@ -2,8 +2,8 @@ import { Buffer } from 'buffer';
 
 import { fromHex, isSSR } from './helpers';
 
-class Loader {
-  private _csl: any;
+class WasmLoader {
+  private _csl: typeof import('@emurgo/cardano-serialization-lib-browser');
 
   async load() {
     if (this._csl) {
@@ -18,10 +18,8 @@ class Loader {
   }
 }
 
-const CslLoader = new Loader();
-
-const nami = isSSR ? ({} as any) : (window as any).cardano;
-
+const loader = new WasmLoader();
+const nami = isSSR ? null : (window as any).cardano;
 const hasNami = Boolean(nami);
 
 const isEnabled = async () => (await nami.isEnabled()) as boolean;
@@ -35,11 +33,11 @@ const enable = async () => {
 };
 
 const getAddress = async () => {
-  await CslLoader.load();
+  await loader.load();
 
   const address = (await nami.getUsedAddresses())[0] as string;
 
-  return CslLoader.CSL.Address.from_bytes(Buffer.from(address, 'hex')).to_bech32();
+  return loader.CSL.Address.from_bytes(Buffer.from(address, 'hex')).to_bech32();
 };
 
 const getAssetNames = async (policyId: string) => {
@@ -48,9 +46,9 @@ const getAssetNames = async (policyId: string) => {
   const hex = (await nami.getBalance()) as string;
   const bytes = Buffer.from(hex, 'hex');
 
-  await CslLoader.load();
+  await loader.load();
 
-  const csl = CslLoader.CSL;
+  const csl = loader.CSL;
   const balance = csl.Value.from_bytes(bytes);
   const allAssets = balance.multiasset();
 

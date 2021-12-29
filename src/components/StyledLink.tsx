@@ -14,6 +14,7 @@ const StyledLink = ({ children, to }: { children: any; to: string }) => (
       color: '#EEEEEE',
       textDecoration: 'none',
       fontWeight: 600,
+      fontFamily: 'VCR',
     }}
     activeStyle={{
       textDecoration: 'underline',

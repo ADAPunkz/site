@@ -1,6 +1,11 @@
 @font-face {
-  font-family: "VCR";
-  src: url("../fonts/VCR_OSD_MONO.ttf");
+  font-family: 'VCR';
+  src: url('../fonts/VCR_OSD_MONO.ttf');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('../fonts/JetBrainsMono-Regular.woff2');
 }
 
 body {
