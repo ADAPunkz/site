@@ -28,7 +28,8 @@ export type NftType = {
   onSale: boolean;
   isAuction: boolean;
   salePrice: number;
-  marketId: string;
+  marketName: string;
+  marketUrl: string;
   listedAt: string;
   minted: boolean;
   offers: Offer[];
@@ -99,7 +100,7 @@ export type AddressBalance = {
 export type EventAction = {
   type: string;
   [key: string]: any;
-}
+};
 
 export type SiteState = {
   address: string;

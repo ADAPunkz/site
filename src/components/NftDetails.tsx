@@ -24,7 +24,7 @@ const NftDetails = ({ metadata }: NftProps) => {
   return (
     <Box direction="row-responsive" gap="small">
       <NftCard metadata={metadata} width="medium" height="medium" />
-      <Box width={size !== 'small' ? 'medium' : ''} elevation="small" direction="column" pad="medium" gap="medium" justify="between" background="punkz-charcoal">
+      <Box width={size !== 'small' ? 'medium' : ''} direction="column" pad="medium" gap="medium" justify="between" background="punkz-charcoal">
         <Box direction="column" gap="small">
           <AttributeItem name="Edition" icon={<Tag color="terminal" />} value={metadata.name} />
           <AttributeItem name="Score" icon={<LineChart color="terminal" />} value={metadata.score.toString()} />
@@ -59,15 +59,7 @@ const NftDetails = ({ metadata }: NftProps) => {
                 zone: 'UTC',
               }).toRelative()}
             </Text>
-            <Button
-              icon={<ADA size="20px" />}
-              label={metadata.salePrice}
-              href={`https://cnft.io/token/${metadata.marketId}`}
-              primary
-              color="white"
-              target="_blank"
-              rel="noreferrer"
-            />
+            <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="white" target="_blank" rel="noreferrer" />
           </Box>
         )}
       </Box>
