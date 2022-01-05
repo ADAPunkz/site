@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, Button, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
-import { Filter, Menu } from 'grommet-icons';
+import { Box, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
+import { Filter, Menu, Package } from 'grommet-icons';
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
@@ -10,6 +10,7 @@ import { useLocation } from '@reach/router';
 import { dispatch, useSiteMetadata } from '../hooks';
 import theme from '../theme';
 import { EVENTS } from '../utils';
+import ChestOverview from './ChestOverview';
 import ConnectButton from './ConnectButton';
 import NavBar from './NavBar';
 import SEO from './SEO';
@@ -29,6 +30,14 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
   const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
   const location = useLocation();
+
+  const dropAlign: any = {
+    top: 'bottom',
+  };
+
+  if (size === 'small') {
+    dropAlign.right = 'right';
+  }
 
   return (
     <>
@@ -58,8 +67,13 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
                   onClick={() => dispatch({ type: EVENTS.OPEN_FILTER_PANEL })}
                 />
               )}
-              {size !== 'small' && <ConnectButton policyId={siteMetadata.policyId} />}
-              <SocialsBar size="20px" />
+              <DropButton icon={<Package />} dropContent={<ChestOverview />} dropAlign={dropAlign} />
+              {size !== 'small' && (
+                <>
+                  <ConnectButton policyId={siteMetadata.policyId} />
+                  <SocialsBar size="20px" />
+                </>
+              )}
               {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}
             </Box>
           </Box>
@@ -81,8 +95,11 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
       </Box>
       {sidebarOpen && (
         <Layer animate modal full="vertical" position="right" onClickOutside={() => setSidebarOpen(false)}>
-          <Sidebar fill close={() => setSidebarOpen(false)}>
+          <Sidebar fill close={() => setSidebarOpen(false)} justify="between">
             <NavBar direction="column" />
+            <Box pad="medium">
+              <SocialsBar size="20px" />
+            </Box>
           </Sidebar>
         </Layer>
       )}

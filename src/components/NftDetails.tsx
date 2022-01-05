@@ -5,6 +5,7 @@ import { useContext } from 'react';
 
 import { useCursor, useInterval } from '../hooks';
 import { NftProps } from '../utils/types';
+import BlinkingCursor from './BlinkingCursor';
 import NftCard from './NftCard';
 import { ADA } from './icons';
 
@@ -21,11 +22,13 @@ const NftDetails = ({ metadata }: NftProps) => {
 
   useInterval(() => skipForward(), 3000);
 
+  const hasOffers = metadata.offers.length > 0 && metadata.offers[index];
+
   return (
     <Box direction="row-responsive" gap="small">
       <NftCard metadata={metadata} width="medium" height="medium" />
-      <Box width={size !== 'small' ? 'medium' : ''} direction="column" pad="medium" gap="medium" justify="between" background="punkz-charcoal">
-        <Box direction="column" gap="small">
+      <Box width={size !== 'small' ? 'medium' : ''} direction="column" elevation="small" justify="between" background="punkz-charcoal">
+        <Box direction="column" gap="small" pad="medium">
           <AttributeItem name="Edition" icon={<Tag color="terminal" />} value={metadata.name} />
           <AttributeItem name="Score" icon={<LineChart color="terminal" />} value={metadata.score.toString()} />
           <AttributeItem name="Rank" icon={<Scorecard color="terminal" />} value={metadata.rank.toString()} />
@@ -36,32 +39,35 @@ const NftDetails = ({ metadata }: NftProps) => {
           <AttributeItem name="Mouth" icon={<Announce color="terminal" />} value={`${metadata.mouth.value} (${metadata.mouth.percent}%)`} />
           <AttributeItem name="Implant Nodes" icon={<Cpu color="terminal" />} value={`${metadata.implant_nodes.value} (${metadata.implant_nodes.percent}%)`} />
           <AttributeItem name="Accessories" icon={<Inspect color="terminal" />} value={`${metadata.accessories.value} (${metadata.accessories.percent}%)`} />
+          <BlinkingCursor color="terminal" />
         </Box>
-        {metadata.offers.length > 0 && metadata.offers[index] && (
-          <Box direction="row-responsive" gap="medium" fill="horizontal" align="center" justify="between">
-            <Text size="small" weight="bold">
-              Offer {index + 1} / {metadata.offers.length}
-            </Text>
-            <Box direction="row" align="center" gap="xsmall">
-              <ADA size="18px" />
+        <Box>
+          {hasOffers && (
+            <Box direction="row-responsive" gap="medium" pad={{ horizontal: 'medium', top: 'medium' }} fill="horizontal" align="center" justify="between" background="white">
               <Text size="small" weight="bold">
-                {metadata.offers[index].value}
+                Offer {index + 1} / {metadata.offers.length}
               </Text>
-              <Text size="small">{`expires ${DateTime.fromISO(metadata.offers[index].expires).toRelative()}`}</Text>
+              <Box direction="row" align="center" gap="xsmall">
+                <ADA size="18px" />
+                <Text size="small" weight="bold">
+                  {metadata.offers[index].value}
+                </Text>
+                <Text size="small">{`expires ${DateTime.fromISO(metadata.offers[index].expires).toRelative()}`}</Text>
+              </Box>
             </Box>
-          </Box>
-        )}
-        {metadata.onSale && (
-          <Box direction="row" gap="small" fill="horizontal" justify="between" align="center">
-            <Text size="small">
-              Listed{' '}
-              {DateTime.fromISO(metadata.listedAt, {
-                zone: 'UTC',
-              }).toRelative()}
-            </Text>
-            <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="white" target="_blank" rel="noreferrer" />
-          </Box>
-        )}
+          )}
+          {metadata.onSale && (
+            <Box direction="row" gap="small" pad={{ horizontal: 'medium', top: 'medium', bottom: 'medium' }} fill="horizontal" justify="between" align="center" background="white">
+              <Text size="small">
+                Listed{' '}
+                {DateTime.fromISO(metadata.listedAt, {
+                  zone: 'UTC',
+                }).toRelative()}
+              </Text>
+              <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="terminal" target="_blank" rel="noreferrer" />
+            </Box>
+          )}
+        </Box>
       </Box>
     </Box>
   );

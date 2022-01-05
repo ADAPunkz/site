@@ -1,3 +1,4 @@
+import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Diagram, Stack, Text } from 'grommet';
 
 import BlinkingCursor from '../components/BlinkingCursor';
@@ -46,27 +47,43 @@ const Roadmap = () => (
         />
         <Box>
           <Box direction="row-responsive" justify="center">
-            <RoadmapSection id="1" title="Q1 2022" image="../images/yoroi.png">
+            <RoadmapSection id="1" title="Q1 2022" image={<StaticImage src="../images/yoroi.png" alt="Yoroi" width={100} placeholder="none" loading="eager" objectFit="contain" />}>
               <Text>&bull; Charles Hoskinpunkz Collage mint</Text>
               <Text>&bull; ADAPunkz stake pool goes live</Text>
             </RoadmapSection>
-            <RoadmapSection id="2" title="Q2 2022" image="../images/warm-and-sunny.png">
+            <RoadmapSection
+              id="2"
+              title="Q2 2022"
+              image={<StaticImage src="../images/warm-and-sunny.png" alt="Warm and Sunny" width={100} placeholder="none" loading="eager" objectFit="contain" />}
+            >
               <Text>&bull; Community chest voting mechanics beta</Text>
               <Text>&bull; Expansion into the Virtual Reality Metaverse</Text>
             </RoadmapSection>
           </Box>
           <Box direction="row-responsive" justify="center">
-            <RoadmapSection id="3" title="Q3 2022" image="../images/deadalus.png">
+            <RoadmapSection
+              id="3"
+              title="Q3 2022"
+              image={<StaticImage src="../images/deadalus.png" alt="Daedalus" width={100} placeholder="none" loading="eager" objectFit="contain" />}
+            >
               <Text>&bull; Community chest allocation proposals go live</Text>
               <Text>&bull; First community chest allocation decision drawn</Text>
             </RoadmapSection>
-            <RoadmapSection id="4" title="Q4 2022" image="../images/lobster.png">
+            <RoadmapSection
+              id="4"
+              title="Q4 2022"
+              image={<StaticImage src="../images/lobster.png" alt="Lobster" width={100} placeholder="none" loading="eager" objectFit="contain" />}
+            >
               <Text>&bull; Creative Community Live Events &amp; Competitions w/ Emphasis on Music</Text>
               <Text>&bull; Real World Collaborations Outside of NFT Space</Text>
             </RoadmapSection>
           </Box>
           <Box direction="row-responsive" justify="center">
-            <RoadmapSection id="5" title="ONGOING" image="../images/vr-goggles.png">
+            <RoadmapSection
+              id="5"
+              title="ONGOING"
+              image={<StaticImage src="../images/vr-goggles.png" alt="VR Goggles" width={100} placeholder="none" loading="eager" objectFit="contain" />}
+            >
               <Text>&bull; Fortnightly ADAPunkz Community Prize Raffle Draw</Text>
               <Text>&bull; Twitter Live Spaces with Artists and NFT Personalities</Text>
               <Text>&bull; Punkz Radio - Virtual Streams curated and hosted by Punkz Community</Text>

@@ -33,7 +33,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <Box direction="column">
+      <Box direction="column" justify="between" fill="vertical">
         {collection === Collections.Recent || assets.length < 1 ? <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} /> : <AssetsLoader assetNames={assets} />}
         <Box direction="row" justify="end">
           {!cardano.hasNami && (

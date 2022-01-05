@@ -93,7 +93,7 @@ export type NftFilterForm = {
 };
 
 export type AddressBalance = {
-  address: string;
+  stakeAddress: string;
   balance: number;
 };
 

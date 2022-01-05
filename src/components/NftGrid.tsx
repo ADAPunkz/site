@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Box, Grid, InfiniteScroll, Spinner } from 'grommet';
@@ -65,7 +66,7 @@ const NftGrid = ({ query }: { query: string }) => {
           </Box>
         </Box>
       ) : (
-        <Grid fill="horizontal" columns="small" gap="medium" margin="medium">
+        <Grid fill="horizontal" columns="small" gap="medium" margin="medium" style={{ height: 'fit-content' }}>
           <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
             {(item: NftType) => (
               <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
