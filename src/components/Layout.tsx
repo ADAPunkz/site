@@ -22,7 +22,7 @@ const StickyHeader = styled(Header)`
   position: sticky;
   top: 0;
   z-index: 5;
-  background-image: linear-gradient(#1b4c8c, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(#0185d7, rgba(0, 0, 0, 0));
 `;
 
 const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
