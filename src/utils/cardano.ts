@@ -22,7 +22,7 @@ const loader = new WasmLoader();
 
 let deprecatedApi = false;
 
-if (!Boolean((window as any).cardano?.nami)) {
+if (!isSSR && !Boolean((window as any).cardano?.nami)) {
   deprecatedApi = true;
   (window as any).cardanoApi = (window as any).cardano;
 }
@@ -38,7 +38,7 @@ const enable = async () => {
   try {
     const api = (await nami.enable()) as boolean;
 
-    if (!deprecatedApi) {
+    if (!isSSR && !deprecatedApi) {
       (window as any).cardanoApi = api;
     }
   } catch {
