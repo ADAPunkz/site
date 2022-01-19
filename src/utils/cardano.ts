@@ -48,6 +48,7 @@ const enable = async () => {
 
 const getAddress = async () => {
   await loader.load();
+  await enable();
 
   const address = (await walletApi().getUsedAddresses())[0] as string;
 
@@ -56,6 +57,8 @@ const getAddress = async () => {
 
 const getAssetNames = async (policyId: string) => {
   const assetNames: string[] = [];
+
+  await enable();
 
   const hex = (await walletApi().getBalance()) as string;
   const bytes = Buffer.from(hex, 'hex');
