@@ -19,14 +19,28 @@ class WasmLoader {
 }
 
 const loader = new WasmLoader();
-const nami = isSSR ? null : (window as any).cardano;
+
+let deprecatedApi = false;
+
+if (!Boolean((window as any).cardano?.nami)) {
+  deprecatedApi = true;
+  (window as any).cardanoApi = (window as any).cardano;
+}
+
+const nami = isSSR ? null : (window as any).cardano?.nami || (window as any).cardano;
 const hasNami = Boolean(nami);
+
+const walletApi = () => (window as any).cardanoApi;
 
 const isEnabled = async () => (await nami.isEnabled()) as boolean;
 
 const enable = async () => {
   try {
-    return (await nami.enable()) as boolean;
+    const api = (await nami.enable()) as boolean;
+
+    if (!deprecatedApi) {
+      (window as any).cardanoApi = api;
+    }
   } catch {
     return false;
   }
@@ -35,7 +49,7 @@ const enable = async () => {
 const getAddress = async () => {
   await loader.load();
 
-  const address = (await nami.getUsedAddresses())[0] as string;
+  const address = (await walletApi().getUsedAddresses())[0] as string;
 
   return loader.CSL.Address.from_bytes(Buffer.from(address, 'hex')).to_bech32();
 };
@@ -43,7 +57,7 @@ const getAddress = async () => {
 const getAssetNames = async (policyId: string) => {
   const assetNames: string[] = [];
 
-  const hex = (await nami.getBalance()) as string;
+  const hex = (await walletApi().getBalance()) as string;
   const bytes = Buffer.from(hex, 'hex');
 
   await loader.load();
