@@ -110,3 +110,8 @@ export type SiteState = {
   filterPayload: NftFilterForm;
   setFilterPayload: (to: NftFilterForm) => void;
 };
+
+export type WhitelistCheck = {
+  address: string;
+  isWhitelisted: boolean;
+}

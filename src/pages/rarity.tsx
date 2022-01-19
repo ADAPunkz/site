@@ -8,12 +8,10 @@ import { attributesWithRarity } from '../data';
 
 const Rarity = () => (
   <Layout>
-    <Box direction="column" align="center" justify="center">
-      <Box width="medium" margin={{ bottom: 'medium' }} pad="small" align="center" justify="center">
-        <SiteHeading level="2" margin="none">
-          Rarity
-        </SiteHeading>
-      </Box>
+    <Box direction="column" align="center" gap="medium">
+      <SiteHeading level="3" margin="none">
+        RARITY
+      </SiteHeading>
       <Box direction="row-responsive" justify="center" gap="medium">
         <Box direction="column" align="center">
           <RarityBox title="Eyes" attributes={attributesWithRarity.eyes} />
