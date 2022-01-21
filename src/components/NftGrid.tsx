@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import styled from 'styled-components';
 
+import { apiUrl } from '../config';
 import { dispatch } from '../hooks';
 import { EVENTS, NftApiResponse, NftType } from '../utils';
 import NftCard from './NftCard';
@@ -22,7 +23,7 @@ const NftGrid = ({ query }: { query: string }) => {
   const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse>(
     ['punkz', 'paged'],
     async ({ pageParam = 1 }) => {
-      const response = await fetch(`https://adapunkz-api.azurewebsites.net/punkz?page=${pageParam}&pageSize=30&${query}`);
+      const response = await fetch(`${apiUrl}/punkz?page=${pageParam}&pageSize=30&${query}`);
 
       if (!response.ok) {
         throw new Error('Response was not OK');
