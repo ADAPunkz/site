@@ -41,6 +41,8 @@ const enable = async () => {
     if (!isSSR && !deprecatedApi) {
       (window as any).cardanoApi = api;
     }
+
+    return true;
   } catch {
     return false;
   }
