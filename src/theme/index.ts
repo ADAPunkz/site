@@ -9,10 +9,8 @@ const theme: ThemeType = deepMerge(grommet, {
         light: '#00AADD',
       },
       'background': {
-        dark: '#1B4C8C',
-        light: '#1B4C8C',
-        /* dark: '#0185d7',
-        light: '#0185d7', */
+        dark: '#0185d7',
+        light: '#0185d7',
       },
       'background-back': {
         dark: '#111111',
