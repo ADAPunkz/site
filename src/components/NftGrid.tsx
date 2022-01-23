@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import styled from 'styled-components';
 
-import { apiUrl } from '../config';
 import { dispatch } from '../hooks';
 import { EVENTS, NftApiResponse, NftType } from '../utils';
 import NftCard from './NftCard';
@@ -23,7 +22,7 @@ const NftGrid = ({ query }: { query: string }) => {
   const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse>(
     ['punkz', 'paged'],
     async ({ pageParam = 1 }) => {
-      const response = await fetch(`${apiUrl}/punkz?page=${pageParam}&pageSize=30&${query}`);
+      const response = await fetch(`https://adapunkz-api.azurewebsites.net/punkz?page=${pageParam}&pageSize=30&${query}`);
 
       if (!response.ok) {
         throw new Error('Response was not OK');
@@ -50,7 +49,7 @@ const NftGrid = ({ query }: { query: string }) => {
   if (!data || (isRefetching && !isFetchingNextPage)) {
     return (
       <Box fill="horizontal" justify="center" align="center">
-        <Spinner color="white" size="large" />
+        <Spinner color="terminal" size="large" />
       </Box>
     );
   }
@@ -70,7 +69,7 @@ const NftGrid = ({ query }: { query: string }) => {
         <Grid fill="horizontal" columns="small" gap="medium" margin="medium" style={{ height: 'fit-content' }}>
           <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
             {(item: NftType) => (
-              <Link key={item.edition} to={`/punk/${item.edition}`} style={{ display: 'flex', flexDirection: 'row', textDecoration: 'none', justifyContent: 'center' }}>
+              <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
                 <NftCard metadata={item} />
               </Link>
             )}

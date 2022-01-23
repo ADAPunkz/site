@@ -7,7 +7,7 @@ import { ADA } from './icons';
 const ChestOverview = () => {
   const { data, isFetching } = useQuery<AddressBalance>('/chest/balance');
   return (
-    <Box background="background-front" width="small" height="small" elevation="medium" pad="medium" align="center" justify="center">
+    <Box background="white" width="small" height="small" elevation="medium" pad="medium" align="center" justify="center">
       {isFetching ? (
         <Spinner color="terminal" />
       ) : (
@@ -19,7 +19,15 @@ const ChestOverview = () => {
           <Text textAlign="center" size="small" margin={{ vertical: 'small' }}>
             Community Chest
           </Text>
-          <Button href={`https://pool.pm/$adapunkz`} label="$adapunkz" size="small" color="terminal" target="_blank" rel="noreferrer noopener" style={{ maxWidth: '150px' }} />
+          <Button
+            href={`https://pool.pm/${data.stakeAddress}`}
+            label="$adapunkz"
+            size="small"
+            color="terminal"
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{ maxWidth: '150px' }}
+          />
         </>
       )}
     </Box>

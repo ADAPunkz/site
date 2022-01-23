@@ -10,7 +10,7 @@ const ShowGlitchBox = styled(Box)`
 `;
 
 const ProfileCard = ({ edition, description }: { edition: number; description: string }) => (
-  <ShowGlitchBox direction="row-responsive" gap="small" background="punkz-charcoal">
+  <ShowGlitchBox direction="row-responsive" gap="small" elevation="small" background="punkz-charcoal">
     <Box width="small" height="small">
       <GlitchImage src={`/images/${edition}.png`} fit="cover" fill />
     </Box>

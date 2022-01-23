@@ -2,13 +2,11 @@ import './src/styles/global.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { apiUrl } from './src/config';
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: async ({ queryKey, pageParam = 1 }) => {
-        let url = `${apiUrl}${queryKey[0]}`;
+        let url = `https://adapunkz-api.azurewebsites.net${queryKey[0]}`;
 
         if (queryKey[queryKey.length - 1] === 'paged') {
           url += `&page=${pageParam}&pageSize=50`;
