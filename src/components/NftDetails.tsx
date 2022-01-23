@@ -1,10 +1,9 @@
-import { Box, Button, ResponsiveContext, Text, Tip } from 'grommet';
+import { Anchor, Box, Button, ResponsiveContext, Text, Tip } from 'grommet';
 import { Accessibility, Announce, Cpu, Image, Inspect, Scorecard, Tag, User, View } from 'grommet-icons';
 import { DateTime } from 'luxon';
 import { useContext } from 'react';
 import styled from 'styled-components';
 
-import { useCursor, useInterval } from '../hooks';
 import { withOrdinalSuffix } from '../utils';
 import { NftProps } from '../utils/types';
 import BlinkingCursor from './BlinkingCursor';
@@ -26,11 +25,6 @@ const AttributeItem = ({ name, icon, value }: { name: string; icon: JSX.Element;
 
 const NftDetails = ({ metadata }: NftProps) => {
   const size = useContext(ResponsiveContext);
-  const { index, skipForward } = useCursor(metadata?.offers?.length);
-
-  useInterval(() => skipForward(), 3000);
-
-  const hasOffers = metadata.offers.length > 0 && metadata.offers[index];
   const detailSize = size === 'small' ? '' : 'medium';
 
   return (
@@ -52,33 +46,15 @@ const NftDetails = ({ metadata }: NftProps) => {
           <BlinkingCursor color="terminal" />
         </Box>
       </HoverGlitch>
-      {(hasOffers || metadata.onSale) && (
-        <Box direction="row-responsive" pad="small" gap="medium" background="background-front">
-          {hasOffers && (
-            <Box direction="row-responsive" gap="medium" fill="horizontal" align="center" justify="between">
-              <Text size="small" weight="bold">
-                Offer {index + 1} / {metadata.offers.length}
-              </Text>
-              <Box direction="row" align="center" gap="xsmall">
-                <ADA size="18px" />
-                <Text size="small" weight="bold">
-                  {metadata.offers[index].value}
-                </Text>
-                <Text size="small">{`expires ${DateTime.fromISO(metadata.offers[index].expires).toRelative()}`}</Text>
-              </Box>
-            </Box>
-          )}
-          {metadata.onSale && (
-            <Box direction="row" gap="small" fill="horizontal" justify="between" align="center">
-              <Text size="small">
-                Listed{' '}
-                {DateTime.fromISO(metadata.listedAt, {
-                  zone: 'UTC',
-                }).toRelative()}
-              </Text>
-              <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="terminal" target="_blank" rel="noreferrer" />
-            </Box>
-          )}
+      {metadata.onSale && (
+        <Box direction="row" pad="small" gap="small" fill="horizontal" justify="between" align="center" background="background-front">
+          <Text size="small">
+            {DateTime.fromISO(metadata.listedAt, {
+              zone: 'UTC',
+            }).toRelative()}{' '}
+            on <Anchor href={`https://${metadata.marketName}`} label={metadata.marketName} target="_blank" rel="noreferer noopener" color="terminal" />
+          </Text>
+          <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="terminal" target="_blank" rel="noreferrer" />
         </Box>
       )}
     </Box>

@@ -70,7 +70,7 @@ const NftGrid = ({ query }: { query: string }) => {
         <Grid fill="horizontal" columns="small" gap="medium" margin="medium" style={{ height: 'fit-content' }}>
           <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
             {(item: NftType) => (
-              <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
+              <Link key={item.edition} to={`/punk/${item.edition}`} style={{ display: 'flex', flexDirection: 'row', textDecoration: 'none', justifyContent: 'center' }}>
                 <NftCard metadata={item} />
               </Link>
             )}

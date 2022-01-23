@@ -1,7 +1,8 @@
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
+import { Box, BoxProps, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
 import { Filter, Menu, Package } from 'grommet-icons';
 import { useContext, useState } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { useLocation } from '@reach/router';
@@ -24,7 +25,9 @@ const StickyHeader = styled(Header)`
   z-index: 5;
 `;
 
-const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
+type LayoutProps = BoxProps & { hideFooter?: boolean };
+
+const InnerLayout: FC<LayoutProps> = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
@@ -77,10 +80,10 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
             </Box>
           </Box>
         </StickyHeader>
-        <Main margin={margin} align="center" fill={false}>
-          {children}
+        <Main margin={props.margin} align="center" justify={props.justify} fill={false}>
+          {props.children}
         </Main>
-        {!hideFooter && (
+        {!props.hideFooter && (
           <Footer direction="column" gap="small" align="center" justify="center" margin="medium">
             <SocialsBar />
             <Text textAlign="center" wordBreak="break-all">
@@ -106,10 +109,10 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
   );
 };
 
-const Layout = ({ children, margin = 'medium', background = 'background', hideFooter = false }) => (
-  <Grommet theme={theme} background={background} themeMode="light" full>
-    <InnerLayout margin={margin} hideFooter={hideFooter}>
-      {children}
+const Layout: FC<LayoutProps> = (props) => (
+  <Grommet theme={theme} background={props.background} themeMode="light" full>
+    <InnerLayout margin={props.margin} hideFooter={props.hideFooter} justify={props.justify}>
+      {props.children}
     </InnerLayout>
   </Grommet>
 );
