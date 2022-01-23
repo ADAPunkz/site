@@ -34,20 +34,22 @@ const Index = () => {
   return (
     <Layout>
       <Box direction="column" justify="between" fill="vertical">
-        {collection === Collections.Recent || assets.length < 1 ? <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} /> : <AssetsLoader assetNames={assets} />}
-        <Box direction="row" justify="end">
-          {!cardano.hasNami && (
-            <Box margin={{ vertical: 'small' }}>
-              <Text>
-                Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> to connect and view your collection
-              </Text>
-            </Box>
-          )}
-          {assets.length > 0 && (
-            <Box width="small">
-              <Button label={collection === Collections.Owned ? 'Show Recent' : 'Show Mine'} color="white" onClick={onToggle} margin={{ vertical: 'small' }} />
-            </Box>
-          )}
+        <Box direction="column">
+          {collection === Collections.Recent || assets.length < 1 ? <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} /> : <AssetsLoader assetNames={assets} />}
+          <Box direction="row" justify="end">
+            {!cardano.hasNami && (
+              <Box margin={{ vertical: 'small' }}>
+                <Text size="small">
+                  Download <Anchor href="https://namiwallet.io/" label="Nami wallet" color="white" /> to connect and view your collection
+                </Text>
+              </Box>
+            )}
+            {assets.length > 0 && (
+              <Box width="small">
+                <Button label={collection === Collections.Owned ? 'Show Recent' : 'Show Mine'} color="white" onClick={onToggle} margin={{ vertical: 'small' }} />
+              </Box>
+            )}
+          </Box>
         </Box>
         <Box direction="column" justify="center" align="center" margin="medium">
           <StaticImage src="../images/home.png" alt="ADAPunkz Home" width={210} placeholder="none" loading="eager" objectFit="contain" />

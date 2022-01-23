@@ -22,7 +22,6 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.16.7",
     "@emurgo/cardano-serialization-lib-browser": "^9.1.4",
     "@fontsource/titillium-web": "^4.5.0",
     "babel-plugin-styled-components": "^2.0.2",

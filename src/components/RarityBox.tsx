@@ -44,7 +44,7 @@ const RarityBox = ({ title, attributes }: { title: string; attributes: Attribute
   };
 
   return (
-    <Box direction="column" width="medium" background="punkz-background-back" margin="medium" elevation="xsmall">
+    <Box direction="column" width="medium" background="punkz-background-back" margin="medium">
       <Box pad="small" direction="row" align="center" justify="between" fill="horizontal" gap="small" background="punkz-background-front">
         <Text weight="bold">{title}</Text>
         <Box direction="row">

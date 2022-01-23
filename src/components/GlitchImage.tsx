@@ -128,7 +128,7 @@ const Glitch = styled.div`
 `;
 
 const GlitchImage = (props: ImageExtendedProps) => (
-  <Glitch>
+  <Glitch style={{ height: props.height }}>
     <Image {...props} />
     <GlitchLayers className="glitchLayers">
       <GlitchLayer color="#ff0000" src={props.src} />

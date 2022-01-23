@@ -1,5 +1,4 @@
-import { Box, Card, CardBody, CardFooter, ResponsiveContext, Text } from 'grommet';
-import { Tools } from 'grommet-icons';
+import { Box, Card, CardBody, CardFooter, Text, ThemeContext, ThemeType } from 'grommet';
 import { useContext } from 'react';
 import styled from 'styled-components';
 
@@ -18,10 +17,6 @@ const TopRightBox = styled(TopBox)`
   right: 1.2rem;
 `;
 
-const TopLeftBox = styled(TopBox)`
-  left: 1.2rem;
-`;
-
 const HoverCard = styled(Card)`
   position: relative;
   transition: transform 0.2s;
@@ -31,17 +26,12 @@ const HoverCard = styled(Card)`
 `;
 
 const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => {
-  const size = useContext(ResponsiveContext);
+  const theme = useContext<ThemeType>(ThemeContext);
   return (
-    <Box width={size === 'small' ? '' : width}>
-      <HoverCard elevation="small" background="background-back" round={false}>
-        <CardBody height={size === 'small' ? '' : height} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
-          <GlitchImage src={`/images/${metadata.edition}.png`} alt={metadata.name} fit="cover" fill />
-          {metadata.isAuction && (
-            <TopLeftBox direction="row" align="center" gap="xsmall">
-              <Tools color="white" size="18px" />
-            </TopLeftBox>
-          )}
+    <Box width={width}>
+      <HoverCard elevation="none" background="background-back" round={false}>
+        <CardBody height={height} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
+          <GlitchImage src={`/images/${metadata.edition}.png`} height={theme.global.size.small} alt={metadata.name} fit="cover" fill />
           {metadata.onSale && (
             <TopRightBox direction="row" align="center" gap="xsmall">
               <ADA color="white" size="18px" />
@@ -51,7 +41,7 @@ const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => {
         </CardBody>
         <CardFooter justify="between" pad="small" height="xxsmall">
           <Text weight="bold">{metadata.name}</Text>
-          <Text color="highlight">{withOrdinalSuffix(metadata.rank)}</Text>
+          <Text color="background">{withOrdinalSuffix(metadata.rank)}</Text>
         </CardFooter>
       </HoverCard>
     </Box>

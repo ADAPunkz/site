@@ -1,8 +1,8 @@
-import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
+import { Box, BoxProps, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
 import { Filter, Menu, Package } from 'grommet-icons';
 import { useContext, useState } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { useLocation } from '@reach/router';
@@ -17,16 +17,17 @@ import SEO from './SEO';
 import Sidebar from './Sidebar';
 import SiteHeading from './SiteHeading';
 import SocialsBar from './SocialsBar';
+import StyledLink from './StyledLink';
 
 const StickyHeader = styled(Header)`
   position: sticky;
   top: 0;
   z-index: 5;
-  /* background-image: linear-gradient(#0185d7, rgba(0, 0, 0, 0)); */
-  background-image: linear-gradient(#1b4c8c, rgba(0, 0, 0, 0));
 `;
 
-const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
+type LayoutProps = BoxProps & { hideFooter?: boolean };
+
+const InnerLayout: FC<LayoutProps> = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
@@ -46,12 +47,12 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
       <Box direction="column" justify="between" fill="vertical" flex="grow" overflow="auto">
         <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal">
           <Box direction="row" align="center" gap="small">
-            <Link to="/">
+            <StyledLink to="/">
               <Box direction="row" gap="small" align="center">
                 <StaticImage src="../images/icon.png" alt={`${siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
+                {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
               </Box>
-            </Link>
-            {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
+            </StyledLink>
           </Box>
           <Box direction="row" fill="horizontal" align="center" justify="between">
             {size !== 'small' && <NavBar />}
@@ -79,10 +80,10 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
             </Box>
           </Box>
         </StickyHeader>
-        <Main margin={margin} align="center" fill={false}>
-          {children}
+        <Main margin={props.margin} align="center" justify={props.justify} fill={false}>
+          {props.children}
         </Main>
-        {!hideFooter && (
+        {!props.hideFooter && (
           <Footer direction="column" gap="small" align="center" justify="center" margin="medium">
             <SocialsBar />
             <Text textAlign="center" wordBreak="break-all">
@@ -108,10 +109,10 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
   );
 };
 
-const Layout = ({ children, margin = 'medium', background = 'background', hideFooter = false }) => (
-  <Grommet theme={theme} background={background} themeMode="light" full>
-    <InnerLayout margin={margin} hideFooter={hideFooter}>
-      {children}
+const Layout: FC<LayoutProps> = (props) => (
+  <Grommet theme={theme} background={props.background} themeMode="light" full>
+    <InnerLayout margin={props.margin} hideFooter={props.hideFooter} justify={props.justify}>
+      {props.children}
     </InnerLayout>
   </Grommet>
 );
