@@ -4,7 +4,7 @@ import { FC } from 'react';
 import SiteHeading from './SiteHeading';
 
 const RoadmapSection: FC<{ id: string; title: string; image: JSX.Element }> = ({ children, id, title, image }) => (
-  <Box id={id} direction="row-responsive" margin="medium" pad="medium" elevation="small" justify="between" background="punkz-charcoal">
+  <Box id={id} direction="row-responsive" margin="medium" pad="medium" justify="between" background="punkz-charcoal">
     <Box direction="column">
       <SiteHeading color="terminal" level="4" margin="none">
         {title}

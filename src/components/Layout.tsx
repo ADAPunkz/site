@@ -1,9 +1,7 @@
-import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, BoxTypes, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text, ThemeContext, ThemeType } from 'grommet';
+import { Box, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
 import { Filter, Menu, Package } from 'grommet-icons';
 import { useContext, useState } from 'react';
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import { useLocation } from '@reach/router';
@@ -18,21 +16,18 @@ import SEO from './SEO';
 import Sidebar from './Sidebar';
 import SiteHeading from './SiteHeading';
 import SocialsBar from './SocialsBar';
+import StyledLink from './StyledLink';
 
-const HeaderWrapper: FC<BoxTypes & { fadeColor: string }> = (props) => <Header {...props} />;
-
-const StickyHeader = styled(HeaderWrapper)`
+const StickyHeader = styled(Header)`
   position: sticky;
   top: 0;
   z-index: 5;
-  background-image: linear-gradient(${(props) => props.fadeColor}, rgba(0, 0, 0, 0));
 `;
 
 const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
-  const theme = useContext<ThemeType>(ThemeContext);
   const location = useLocation();
 
   const dropAlign: any = {
@@ -47,14 +42,14 @@ const InnerLayout = ({ children, margin = 'medium', hideFooter = false }) => {
     <>
       <SEO />
       <Box direction="column" justify="between" fill="vertical" flex="grow" overflow="auto">
-        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal" fadeColor={(theme.global.colors as any).background.light}>
+        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal">
           <Box direction="row" align="center" gap="small">
-            <Link to="/">
+            <StyledLink to="/">
               <Box direction="row" gap="small" align="center">
                 <StaticImage src="../images/icon.png" alt={`${siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
+                {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
               </Box>
-            </Link>
-            {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
+            </StyledLink>
           </Box>
           <Box direction="row" fill="horizontal" align="center" justify="between">
             {size !== 'small' && <NavBar />}

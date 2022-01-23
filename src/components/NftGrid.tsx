@@ -50,7 +50,7 @@ const NftGrid = ({ query }: { query: string }) => {
   if (!data || (isRefetching && !isFetchingNextPage)) {
     return (
       <Box fill="horizontal" justify="center" align="center">
-        <Spinner color="terminal" size="large" />
+        <Spinner color="white" size="large" />
       </Box>
     );
   }
