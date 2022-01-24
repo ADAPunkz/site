@@ -1392,11 +1392,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/titillium-web@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/@fontsource/titillium-web/-/titillium-web-4.5.0.tgz"
-  integrity sha512-QhMaLHRkcNqni+aLJ1CZ5cDEtIpKB90xp30SbGvOi5Q7DlziPVu+8D5yL0IXNzU4s76mPavOJ6jZxqd+jnq45w==
-
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
   resolved "https://registry.npmjs.org/@gatsbyjs/reach-router/-/reach-router-1.3.6.tgz"
