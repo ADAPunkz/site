@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardFooter, Text, ThemeContext, ThemeType } from 'grommet';
+import { Box, Card, CardBody, CardFooter, ResponsiveContext, Text, ThemeContext, ThemeType } from 'grommet';
 import { useContext } from 'react';
 import styled from 'styled-components';
 
@@ -25,13 +25,16 @@ const HoverCard = styled(Card)`
   }
 `;
 
-const NftCard = ({ metadata, width = 'small', height = 'small' }: NftProps) => {
+const NftCard = ({ metadata }: NftProps) => {
   const theme = useContext<ThemeType>(ThemeContext);
+  const size = useContext(ResponsiveContext);
+  const constrainedSize = size === 'small' ? '' : 'small';
+
   return (
-    <Box width={width}>
+    <Box width={constrainedSize}>
       <HoverCard elevation="none" background="background-back" round={false}>
-        <CardBody height={height} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
-          <GlitchImage src={`/images/${metadata.edition}.png`} height={theme.global.size.small} alt={metadata.name} fit="cover" fill />
+        <CardBody height={constrainedSize} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
+          <GlitchImage src={`/images/${metadata.edition}.png`} height={size === 'small' ? '' : theme.global.size.small} alt={metadata.name} fit="cover" fill />
           {metadata.onSale && (
             <TopRightBox direction="row" align="center" gap="xsmall">
               <ADA color="white" size="18px" />

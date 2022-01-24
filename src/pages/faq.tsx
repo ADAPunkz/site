@@ -22,7 +22,12 @@ const FAQ = () => (
           <Text margin={textMargin}>Minting has ended, sales are now taking place on secondary markets.</Text>
         </AccordionPanel>
         <AccordionPanel label={<SiteHeading level="5">Where is secondary?</SiteHeading>}>
-          <Text margin={textMargin}>Secondary sales are live on CNFT.io, Tokun and ExNFT. </Text>
+          <Text margin={textMargin}>
+            Secondary sales are live on <Anchor href="https://jpg.store" label="jpg.store" target="_blank" rel="noreferer noopener" />,{' '}
+            <Anchor href="https://cnft.io" label="CNFT.io" target="_blank" rel="noreferer noopener" />,{' '}
+            <Anchor href="https://tokhun.io" label="Tokhun" target="_blank" rel="noreferer noopener" />, and will be live on{' '}
+            <Anchor href="https://artifct.app" label="Artifct" target="_blank" rel="noreferer noopener" /> at launch.
+          </Text>
         </AccordionPanel>
         <AccordionPanel label={<SiteHeading level="5">Rarity chart?</SiteHeading>}>
           <Text margin={textMargin}>
