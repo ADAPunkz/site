@@ -25,15 +25,15 @@ const AttributeItem = ({ name, icon, value }: { name: string; icon: JSX.Element;
 
 const NftDetails = ({ metadata }: NftProps) => {
   const size = useContext(ResponsiveContext);
-  const detailSize = size === 'small' ? '' : 'medium';
+  const constrainedSize = size === 'small' ? '' : 'medium';
 
   return (
     <Box direction="column">
       <HoverGlitch direction="row-responsive" background="punkz-charcoal">
-        <Box width="medium">
+        <Box width={constrainedSize}>
           <GlitchImage fill src={`/images/${metadata.edition}.png`} fit="contain" />
         </Box>
-        <Box width={detailSize} height={detailSize} direction="column" gap="small" pad="medium">
+        <Box width={constrainedSize} height={constrainedSize} direction="column" gap="small" pad="medium">
           <AttributeItem name="Edition" icon={<Tag color="terminal" />} value={metadata.name} />
           <AttributeItem name="Rank" icon={<Scorecard color="terminal" />} value={withOrdinalSuffix(metadata.rank)} />
           <AttributeItem name="Background" icon={<Image color="terminal" />} value={`${metadata.background.value} (${metadata.background.percent}%)`} />
