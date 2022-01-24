@@ -110,8 +110,8 @@ const InnerLayout: FC<LayoutProps> = (props) => {
 };
 
 const Layout: FC<LayoutProps> = (props) => (
-  <Grommet theme={theme} background={props.background} themeMode="light" full>
-    <InnerLayout margin={props.margin} hideFooter={props.hideFooter} justify={props.justify}>
+  <Grommet theme={theme} background={props.background || 'background'} themeMode="light" full>
+    <InnerLayout margin={props.margin || 'medium'} hideFooter={props.hideFooter} justify={props.justify}>
       {props.children}
     </InnerLayout>
   </Grommet>
