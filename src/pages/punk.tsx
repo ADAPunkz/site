@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import NftDetailsLoader from '../components/NftDetailsLoader';
 
 const Punk = () => (
-  <Layout>
+  <Layout justify="center">
     <Router>
       <NftDetailsLoader path="/punk/:id" />
     </Router>

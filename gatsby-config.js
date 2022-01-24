@@ -11,6 +11,7 @@ module.exports = {
     github: 'https://github.com/ADAPunkz',
     keywords: ['ADAPunkz', 'ADA', 'Punkz', 'NFT', 'Cardano', 'CNFT', 'Cryptocurrency', 'Crypto', 'Blockchain', 'Investment', 'Digital', 'Art', 'Generative'],
   },
+  jsxRuntime: 'automatic',
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-image',

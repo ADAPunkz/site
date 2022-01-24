@@ -15,7 +15,7 @@ const NftDetailsLoader = ({ path: _path }: { path: string }) => {
   const { data, isFetched } = useQuery<NftType>(`/punkz/${params.id}`);
 
   return (
-    <Box direction="row-responsive" gap="small">
+    <Box direction="row-responsive" alignSelf="center" gap="small">
       <Link to="/explore">
         <Button icon={<FormPreviousLink />} hoverIndicator margin={{ right: 'small' }} />
       </Link>
