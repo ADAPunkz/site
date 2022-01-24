@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@emurgo/cardano-serialization-lib-browser": "^9.1.4",
-    "@fontsource/titillium-web": "^4.5.0",
     "babel-plugin-styled-components": "^2.0.2",
     "gatsby": "^4.5.5",
     "gatsby-plugin-gatsby-cloud": "^4.5.2",
