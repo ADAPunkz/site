@@ -34,16 +34,20 @@ const SEO = () => {
       }}
       title={siteMetadata.title}
       titleTemplate={siteMetadata.title}
-      link={
-        canonical
+      link={[
+        {
+          rel: 'preconnect',
+          href: 'https://adapunkz-api.azurewebsites.net',
+        },
+        ...(canonical
           ? [
               {
                 rel: 'canonical',
                 href: canonical,
               },
             ]
-          : []
-      }
+          : []),
+      ]}
       meta={[
         {
           name: 'description',

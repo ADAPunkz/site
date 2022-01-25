@@ -54,7 +54,7 @@ const NftDetails = ({ metadata }: NftProps) => {
             }).toRelative()}{' '}
             on <Anchor href={`https://${metadata.marketName}`} label={metadata.marketName} target="_blank" rel="noreferer noopener" color="terminal" />
           </Text>
-          <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="terminal" target="_blank" rel="noreferrer" />
+          <Button icon={<ADA size="20px" />} label={metadata.salePrice} href={metadata.marketUrl} primary color="white" target="_blank" rel="noreferrer" />
         </Box>
       )}
     </Box>
