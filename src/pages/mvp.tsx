@@ -113,9 +113,9 @@ const MVP = () => {
             <Text color="status-warning" size="small" textAlign="center">
               The above whitelist is currently{' '}
               <Text weight="bold" size="small">
-                for the top 1K Punkz snapshot only
+                for the top 1K Punkz snapshot and the OG whitelist
               </Text>
-              , OG and BCRC whitelists will be added shortly.
+              , the BCRC tiebreaker results will be added shortly.
             </Text>
           </Box>
         </Box>
