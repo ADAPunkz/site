@@ -1,4 +1,4 @@
-import { Box, Button, Notification, Spinner, StatusType, Text, TextInput } from 'grommet';
+import { Box, Button, Image, Notification, Spinner, StatusType, Text, TextInput } from 'grommet';
 import { StatusCritical, StatusGood, StatusUnknown } from 'grommet-icons';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
@@ -57,34 +57,65 @@ const MVP = () => {
         <SiteHeading level="3" margin="none">
           METAVERSE PASS
         </SiteHeading>
-        <Box direction="column" gap="medium" align="center" width="large" background="punkz-charcoal" margin="medium" pad="large">
-          <Text textAlign="center">Check your address is whitelisted for presale</Text>
-          <StyledBox fill="horizontal" direction="row-responsive" gap="small" align="center" pad="small">
-            <TextInput placeholder="Wallet address" value={checkAddress} focusIndicator={false} icon={icon} onChange={(event) => setCheckAddress(event.target.value)} />
-            <Box width="small" height="100%" alignSelf="center">
-              <Button
-                label={
-                  addressCheck.isLoading ? (
-                    <Box fill="horizontal" align="center">
-                      <Spinner color="white" />
-                    </Box>
-                  ) : (
-                    <Text>Check</Text>
-                  )
-                }
-                fill
-                color="white"
-                onClick={runCheck}
-              />
+        <Box direction="column" align="center" width="large" margin="medium">
+          <Box direction="row-responsive" background="white" gap="small" fill="horizontal">
+            <Box fill="horizontal">
+              <Image fill src="./images/collage.gif" fit="contain" width={300} alt="ADAPunkz MVP" />
             </Box>
-          </StyledBox>
-          <Box>
+            <Box direction="column" gap="medium" pad="medium">
+              <Box gap="small">
+                <SiteHeading level="4" margin="none">
+                  ADAPunkz MVP
+                </SiteHeading>
+                <Text size="small">Your passport to the ADAPunkz metaverse</Text>
+                <Text size="small" weight="bold">
+                  &bull; Limited Edition Framed Charles Hoskinson x ADAPunkz Collage NFT Set
+                </Text>
+                <Text size="small" weight="bold">
+                  &bull; 5 Tiers of Rarity [as voted by the community]
+                </Text>
+                <Text size="small" weight="bold">
+                  &bull; Exclusive Incentives Unlocked within the ADAPunkz Metaverse Estate for each tier
+                </Text>
+                <Text size="small" weight="bold">
+                  &bull; 20 ADA per Mint, 5000 total supply
+                </Text>
+                <Text size="small" weight="bold">
+                  &bull; ONLY open to ADAPunkz hodlers
+                </Text>
+                <Text size="small" weight="bold">
+                  &bull; Minting Friday January 28th 7pm UTC, with 30 mins early whitelist access
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+          <Box direction="column" background="background-front" pad="medium" fill="horizontal">
+            <Text textAlign="center">Check your address is whitelisted for presale</Text>
+            <StyledBox fill="horizontal" direction="row-responsive" gap="small" align="center" pad="small">
+              <TextInput placeholder="Wallet address" value={checkAddress} focusIndicator={false} icon={icon} onChange={(event) => setCheckAddress(event.target.value)} />
+              <Box width="small" height="100%" alignSelf="center">
+                <Button
+                  label={
+                    addressCheck.isLoading ? (
+                      <Box fill="horizontal" align="center">
+                        <Spinner color="white" />
+                      </Box>
+                    ) : (
+                      <Text>Check</Text>
+                    )
+                  }
+                  fill
+                  color="terminal"
+                  onClick={runCheck}
+                />
+              </Box>
+            </StyledBox>
             <Text color="status-warning" size="small" textAlign="center">
-              If you were whitelisted in the top 1k punk snapshot,{' '}
+              The above whitelist is currently{' '}
               <Text weight="bold" size="small">
-                the whitelisted address is that which held the punk during the snapshot
+                for the top 1K Punkz snapshot only
               </Text>
-              , you likely have multiple addresses associated with your wallet - check which address your punk was sent to.
+              , OG and BCRC whitelists will be added shortly.
             </Text>
           </Box>
         </Box>
