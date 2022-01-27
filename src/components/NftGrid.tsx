@@ -71,7 +71,7 @@ const NftGrid = ({ query }: { query: string }) => {
           <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
             {(item: PunkzNft) => (
               <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
-                <NftCard metadata={item} />
+                <NftCard metadata={item} path={`punkz/${item.edition}.png`} />
               </Link>
             )}
           </InfiniteScroll>

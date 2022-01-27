@@ -32,7 +32,7 @@ const NftCard = ({ metadata, path }: NftProps<Nft>) => {
       <HoverGlitchReveal>
         <StyledCard elevation="none" background="background-back" round={false}>
           <CardBody height={constrainedSize} pad={{ horizontal: 'xsmall', top: 'xsmall' }}>
-            <GlitchImage src={`/images/${path}/${metadata.edition}.png`} height={size === 'small' ? '' : theme.global.size.small} alt={metadata.name} fit="cover" fill />
+            <GlitchImage src={`/images/${path}`} height={size === 'small' ? '' : theme.global.size.small} alt={metadata.name} fit="cover" fill />
             {metadata.onSale && (
               <TopRightBox direction="row" align="center" gap="xsmall">
                 <ADA color="white" size="18px" />

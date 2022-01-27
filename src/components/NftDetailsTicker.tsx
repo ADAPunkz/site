@@ -8,7 +8,7 @@ import NftDetails from './NftDetails';
 import NftDetailsSkeleton from './NftDetailsSkeleton';
 import SiteHeading from './SiteHeading';
 
-const NftDetailsTicker: FC<{ title: string; nfts: Nft[]; attributes: FC<any>; path: string }> = ({ title, nfts, attributes, path }) => {
+const NftDetailsTicker: FC<{ title: string; nfts: Nft[]; attributes: FC<any>; pathSelector: (nft: Nft) => string }> = ({ title, nfts, attributes, pathSelector }) => {
   const { index, skipForward, skipBackward } = useCursor(nfts.length);
   const stopInterval = useInterval(() => nfts.length && skipForward(), 10000);
   return (
@@ -36,7 +36,7 @@ const NftDetailsTicker: FC<{ title: string; nfts: Nft[]; attributes: FC<any>; pa
           </Box>
         )}
       </Box>
-      {nfts.length ? <NftDetails metadata={nfts[index]} attributes={attributes} path={path} /> : <NftDetailsSkeleton />}
+      {nfts.length ? <NftDetails metadata={nfts[index]} attributes={attributes} path={pathSelector(nfts[index])} /> : <NftDetailsSkeleton />}
     </Box>
   );
 };

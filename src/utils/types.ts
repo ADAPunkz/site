@@ -46,7 +46,7 @@ export interface CollageNft extends Nft {
 
 export type NftProps<T extends Nft> = {
   metadata: T;
-  attributes: FC<any>;
+  attributes?: FC<any>;
   path: string;
   width?: WidthType;
   height?: HeightType;
@@ -107,6 +107,11 @@ export type AddressBalance = {
   stakeAddress: string;
   balance: number;
 };
+
+export type MintingAddress = {
+  address: string;
+  isActive: boolean;
+}
 
 export type EventAction = {
   type: string;

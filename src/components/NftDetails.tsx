@@ -16,7 +16,7 @@ const NftDetails = ({ metadata, path, attributes: Attributes }: NftProps<Nft>) =
     <Box direction="column">
       <HoverGlitchReveal direction="row-responsive" background="punkz-charcoal">
         <Box width={constrainedSize}>
-          <GlitchImage fill src={`/images/${path}/${metadata.edition}.png`} fit="contain" />
+          <GlitchImage fill src={`/images/${path}`} fit="contain" />
         </Box>
         <Box width={constrainedSize} height={constrainedSize} direction="column" gap="small" pad="medium">
           <Attributes metadata={metadata} />

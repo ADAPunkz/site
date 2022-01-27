@@ -1,5 +1,5 @@
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, BoxProps, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
+import { Box, BoxProps, BoxTypes, Button, DropButton, Footer, Grommet, Header, Layer, Main, ResponsiveContext, Text } from 'grommet';
 import { Filter, Menu, Package } from 'grommet-icons';
 import { useContext, useState } from 'react';
 import { FC } from 'react';
@@ -19,13 +19,16 @@ import SiteHeading from './SiteHeading';
 import SocialsBar from './SocialsBar';
 import StyledLink from './StyledLink';
 
-const StickyHeader = styled(Header)`
+type LayoutProps = BoxProps & { hideFooter?: boolean };
+
+const HeaderWrapper: FC<BoxTypes & { fadeColor: string }> = (props) => <Header {...props} />;
+
+const StickyHeader = styled(HeaderWrapper)`
   position: sticky;
   top: 0;
   z-index: 5;
+  background-image: linear-gradient(${(props) => props.fadeColor}, rgba(0, 0, 0, 0));
 `;
-
-type LayoutProps = BoxProps & { hideFooter?: boolean };
 
 const InnerLayout: FC<LayoutProps> = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -45,7 +48,7 @@ const InnerLayout: FC<LayoutProps> = (props) => {
     <>
       <SEO />
       <Box direction="column" justify="between" fill="vertical" flex="grow" overflow="auto">
-        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal">
+        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal" fadeColor={(theme.global.colors as any).background}>
           <Box direction="row" align="center" gap="small">
             <StyledLink to="/">
               <Box direction="row" gap="small" align="center">

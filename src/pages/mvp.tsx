@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, Image, Notification, Spinner, StatusType, Text, TextInput } from 'grommet';
 import { StatusCritical, StatusGood, StatusUnknown } from 'grommet-icons';
 import { useState } from 'react';
+import Countdown from 'react-countdown';
 import { useMutation, useQuery } from 'react-query';
 import styled from 'styled-components';
 
@@ -8,7 +10,7 @@ import CollageDetailsTicker from '../components/CollageDetailsTicker';
 import Layout from '../components/Layout';
 import SiteHeading from '../components/SiteHeading';
 import { apiUrl } from '../config';
-import { CollageNft, NftApiResponse, WhitelistCheck } from '../utils';
+import { CollageNft, MintingAddress, NftApiResponse, WhitelistCheck } from '../utils';
 
 const StyledBox = styled(Box)`
   & input {
@@ -17,14 +19,21 @@ const StyledBox = styled(Box)`
   }
 `;
 
+const CountdownRenderer = ({ days, hours, minutes, seconds }) => (
+  <Text color="terminal" weight="bold" textAlign="center">
+    {days}D, {hours}H, {minutes}M, {seconds}S UNTIL MINT
+  </Text>
+);
+
 const MVP = () => {
   const [checkAddress, setCheckAddress] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
-  const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
+  /* const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc'); */
+  const { data: addressData } = useQuery<MintingAddress>('/collage/mint/address');
 
-  const addressCheck = useMutation<WhitelistCheck, unknown, string>('/whitelist/check/collage', async (address) => {
-    const response = await fetch(`${apiUrl}/whitelist/check/collage/${address}`);
+  const addressCheck = useMutation<WhitelistCheck, unknown, string>('/collage/mint/whitelist', async (address) => {
+    const response = await fetch(`${apiUrl}/collage/mint/whitelist/${address}`);
     return response.json();
   });
 
@@ -92,7 +101,12 @@ const MVP = () => {
               </Box>
             </Box>
           </Box>
-          <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} />
+          <Box direction="column" background="punkz-charcoal" pad="medium" fill="horizontal">
+            <Text textAlign="center">Send 20 ADA to the address below once minting starts</Text>
+            <StyledBox fill="horizontal" direction="row-responsive" gap="small" justify="center" align="center" pad="small">
+              {addressData?.isActive ? <Text color="terminal">{addressData.address}</Text> : <Countdown date={new Date(2022, 0, 28, 19)} renderer={CountdownRenderer} />}
+            </StyledBox>
+          </Box>
           <Box direction="column" background="background-front" pad="medium" fill="horizontal">
             <Text textAlign="center">Check your address is whitelisted for presale</Text>
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" align="center" pad="small">
@@ -115,6 +129,7 @@ const MVP = () => {
               </Box>
             </StyledBox>
           </Box>
+          {/* <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} /> */}
         </Box>
       </Box>
       {toastVisible && <Notification toast title={title} message={message} onClose={() => setToastVisible(false)} status={status} />}

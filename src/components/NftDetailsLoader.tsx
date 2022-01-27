@@ -20,7 +20,7 @@ const NftDetailsLoader = ({ path: _path }: { path: string }) => {
       <Link to="/explore">
         <Button icon={<FormPreviousLink />} hoverIndicator margin={{ right: 'small' }} />
       </Link>
-      {isFetched ? <NftDetails metadata={data} path="punkz" attributes={PunkzAttributes} /> : <NftDetailsSkeleton />}
+      {isFetched ? <NftDetails metadata={data} path={`punkz/${data.edition}.png`} attributes={PunkzAttributes} /> : <NftDetailsSkeleton />}
     </Box>
   );
 };
