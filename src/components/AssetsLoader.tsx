@@ -1,7 +1,7 @@
 import { useQueries } from 'react-query';
 
 import { assetNamesToEndpoints } from '../utils';
-import NftDetailsTicker from './NftDetailsTicker';
+import PunkzDetailsTicker from './PunkzDetailsTicker';
 
 const AssetsLoader = ({ assetNames }: { assetNames: string[] }) => {
   const endpoints = assetNamesToEndpoints('/punkz', 'ADAPunk', assetNames);
@@ -23,7 +23,7 @@ const AssetsLoader = ({ assetNames }: { assetNames: string[] }) => {
     nfts.push(result.data);
   }
 
-  return <NftDetailsTicker title="My Collection" nfts={nfts} />;
+  return <PunkzDetailsTicker title="My Collection" nfts={nfts} />;
 };
 
 export default AssetsLoader;

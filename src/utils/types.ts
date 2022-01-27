@@ -1,4 +1,5 @@
 import { HeightType, WidthType } from 'grommet/utils';
+import { FC } from 'react';
 
 export type Trait = {
   percent: number;
@@ -11,20 +12,13 @@ export type Offer = {
   expires: string;
 };
 
-export type NftType = {
+export interface Nft {
   name: string;
   edition: number;
   score: number;
   rank: number;
   image: string;
   ipfs: string;
-  background: Trait;
-  type: Trait;
-  mouth: Trait;
-  eyes: Trait;
-  implant_nodes: Trait;
-  head: Trait;
-  accessories: Trait;
   onSale: boolean;
   isAuction: boolean;
   salePrice: number;
@@ -33,16 +27,33 @@ export type NftType = {
   listedAt: string;
   minted: boolean;
   offers: Offer[];
-};
+}
 
-export type NftProps = {
-  metadata: NftType;
+export interface PunkzNft extends Nft {
+  background: Trait;
+  type: Trait;
+  mouth: Trait;
+  eyes: Trait;
+  implant_nodes: Trait;
+  head: Trait;
+  accessories: Trait;
+}
+
+export interface CollageNft extends Nft {
+  type: Trait;
+  tier: Trait;
+}
+
+export type NftProps<T extends Nft> = {
+  metadata: T;
+  attributes: FC<any>;
+  path: string;
   width?: WidthType;
   height?: HeightType;
 };
 
-export type NftApiResponse = {
-  results: NftType[];
+export type NftApiResponse<T extends Nft> = {
+  results: T[];
   resultsCount: number;
   nextPage: number;
   pageSize: number;
@@ -114,4 +125,4 @@ export type SiteState = {
 export type WhitelistCheck = {
   address: string;
   isWhitelisted: boolean;
-}
+};

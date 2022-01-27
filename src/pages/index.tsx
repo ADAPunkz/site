@@ -5,10 +5,10 @@ import { useQuery } from 'react-query';
 
 import AssetsLoader from '../components/AssetsLoader';
 import Layout from '../components/Layout';
-import NftDetailsTicker from '../components/NftDetailsTicker';
+import PunkzDetailsTicker from '../components/PunkzDetailsTicker';
 import SiteHeading from '../components/SiteHeading';
 import { useStore } from '../hooks';
-import { NftApiResponse, cardano } from '../utils';
+import { NftApiResponse, PunkzNft, cardano } from '../utils';
 
 enum Collections {
   Recent,
@@ -18,7 +18,7 @@ enum Collections {
 const Index = () => {
   const [collection, setCollection] = useState(Collections.Recent);
 
-  const { data } = useQuery<NftApiResponse>('/punkz?page=1&pageSize=50&onSale=true&sort=listedAt&direction=desc');
+  const { data } = useQuery<NftApiResponse<PunkzNft>>('/punkz?page=1&pageSize=50&onSale=true&sort=listedAt&direction=desc');
   const assets = useStore((state) => state.assets);
 
   const onToggle = () => {
@@ -35,7 +35,11 @@ const Index = () => {
     <Layout>
       <Box direction="column" justify="between" fill="vertical">
         <Box direction="column">
-          {collection === Collections.Recent || assets.length < 1 ? <NftDetailsTicker title="Recently Listed" nfts={data?.results || []} /> : <AssetsLoader assetNames={assets} />}
+          {collection === Collections.Recent || assets.length < 1 ? (
+            <PunkzDetailsTicker title="Recently Listed" nfts={data?.results || []} />
+          ) : (
+            <AssetsLoader assetNames={assets} />
+          )}
           <Box direction="row" justify="end">
             {!cardano.hasNami && (
               <Box margin={{ vertical: 'small' }}>

@@ -1,13 +1,14 @@
 import { Box, Button, Image, Notification, Spinner, StatusType, Text, TextInput } from 'grommet';
 import { StatusCritical, StatusGood, StatusUnknown } from 'grommet-icons';
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import styled from 'styled-components';
 
+import CollageDetailsTicker from '../components/CollageDetailsTicker';
 import Layout from '../components/Layout';
 import SiteHeading from '../components/SiteHeading';
 import { apiUrl } from '../config';
-import { WhitelistCheck } from '../utils';
+import { CollageNft, NftApiResponse, WhitelistCheck } from '../utils';
 
 const StyledBox = styled(Box)`
   & input {
@@ -19,6 +20,8 @@ const StyledBox = styled(Box)`
 const MVP = () => {
   const [checkAddress, setCheckAddress] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
+
+  const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
 
   const addressCheck = useMutation<WhitelistCheck, unknown, string>('/whitelist/check/collage', async (address) => {
     const response = await fetch(`${apiUrl}/whitelist/check/collage/${address}`);
@@ -89,6 +92,7 @@ const MVP = () => {
               </Box>
             </Box>
           </Box>
+          <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} />
           <Box direction="column" background="background-front" pad="medium" fill="horizontal">
             <Text textAlign="center">Check your address is whitelisted for presale</Text>
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" align="center" pad="small">

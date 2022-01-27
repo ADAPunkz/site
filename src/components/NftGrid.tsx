@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import { apiUrl } from '../config';
 import { dispatch } from '../hooks';
-import { EVENTS, NftApiResponse, NftType } from '../utils';
+import { EVENTS, NftApiResponse, PunkzNft } from '../utils';
 import NftCard from './NftCard';
 import SiteHeading from './SiteHeading';
 
@@ -20,7 +20,7 @@ const IndicateHover = styled.div`
 `;
 
 const NftGrid = ({ query }: { query: string }) => {
-  const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse>(
+  const { data, fetchNextPage, isFetchingNextPage, isRefetching, refetch } = useInfiniteQuery<NftApiResponse<PunkzNft>>(
     ['punkz', 'paged'],
     async ({ pageParam = 1 }) => {
       const response = await fetch(`${apiUrl}/punkz?page=${pageParam}&pageSize=30&${query}`);
@@ -41,7 +41,7 @@ const NftGrid = ({ query }: { query: string }) => {
   }, [query, refetch]);
 
   const count = data?.pages?.length || 0;
-  let items: NftType[] = [];
+  let items: PunkzNft[] = [];
 
   for (let i = 0; i < count; i++) {
     items = [...items, ...data.pages[i].results];
@@ -69,7 +69,7 @@ const NftGrid = ({ query }: { query: string }) => {
       ) : (
         <Grid fill="horizontal" columns="small" gap="medium" margin="medium" style={{ height: 'fit-content' }}>
           <InfiniteScroll items={items} onMore={fetchNextPage} step={25}>
-            {(item: NftType) => (
+            {(item: PunkzNft) => (
               <Link key={item.edition} to={`/punk/${item.edition}`} style={{ textDecoration: 'none' }}>
                 <NftCard metadata={item} />
               </Link>
