@@ -77,7 +77,7 @@ const MVP = () => {
             </Box>
           </Box>
           <Box direction="column" background="background-front" align="center" pad="medium" fill="horizontal">
-            <Text textAlign="center">Send 20 ADA to the address below once minting starts</Text>
+            <Text textAlign="center">Send 20 ADA per NFT to the address below</Text>
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" justify="center" align="center" pad="small">
               {addressData?.isActive ? (
                 <Text color="terminal" wordBreak="break-all">
