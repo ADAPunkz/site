@@ -1,3 +1,5 @@
+import { CollageNft } from "./types";
+
 export const randomIntBetween = (min: number, max: number) => Math.floor((Math.random() * (max - min)) + min);
 
 export const isSSR: boolean = (() => typeof window === 'undefined')();
@@ -57,6 +59,10 @@ export const assetNamesToEndpoints = (endpointPrefix: string, tokenPrefix: strin
   }
 
   return endpoints;
+};
+
+export const getCollageImageName = (collage: CollageNft) => {
+  return `${collage.type.value.toLowerCase().replace(' ', '_')}-${collage.tier.value.toLowerCase().replace(' ', '_')}`;
 };
 
 export const defaultFilterPayload = {
