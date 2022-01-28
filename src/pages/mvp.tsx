@@ -1,4 +1,6 @@
-import { Box, Image, Text } from 'grommet';
+import { navigate } from 'gatsby';
+import { Box, Button, Image, List, Text, TextInput } from 'grommet';
+import { useState } from 'react';
 import Countdown from 'react-countdown';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
@@ -23,10 +25,18 @@ const CountdownRenderer = ({ days, hours, minutes, seconds }) => (
 );
 
 const MVP = () => {
+  const [edition, setEdition] = useState('');
+
   const siteMetadata = useSiteMetadata();
 
   const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
   const { data: addressData } = useQuery<MintingAddress>('/collage/mint/address');
+
+  const onClick = () => {
+    if (edition) {
+      navigate(`/collage/${edition}`);
+    }
+  };
 
   return (
     <Layout>
@@ -66,21 +76,46 @@ const MVP = () => {
               </Box>
             </Box>
           </Box>
-          <Box direction="column" background="background-front" pad="medium" fill="horizontal">
+          <Box direction="column" background="background-front" align="center" pad="medium" fill="horizontal">
             <Text textAlign="center">Send 20 ADA to the address below once minting starts</Text>
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" justify="center" align="center" pad="small">
-              {addressData?.isActive ? <Text color="terminal">{addressData.address}</Text> : <Countdown date={new Date(Date.UTC(2022, 0, 28, 19))} renderer={CountdownRenderer} />}
+              {addressData?.isActive ? (
+                <Text color="terminal" wordBreak="break-all">
+                  {addressData.address}
+                </Text>
+              ) : (
+                <Countdown date={new Date(Date.UTC(2022, 0, 28, 19))} renderer={CountdownRenderer} />
+              )}
             </StyledBox>
             <Text textAlign="center" color="status-warning" size="small" margin={{ top: 'small' }}>
               You must send the{' '}
               <Text size="small" weight="bold">
                 exact amount
               </Text>{' '}
-              to the address above, and hold an ADAPunk at the time of minting. You can purchase up to 5 per transaction by sending e.g. 40 ADA for two NFTs, 100 ADA for 5, and so
-              on
+              to the address above, and hold an ADAPunk at the time of minting. The price list is below
             </Text>
+            <Box width="small" margin="medium">
+              <List
+                primaryKey="quantity"
+                secondaryKey="price"
+                data={[
+                  { quantity: '1', price: '20 ADA' },
+                  { quantity: '2', price: '40 ADA' },
+                  { quantity: '3', price: '60 ADA' },
+                  { quantity: '4', price: '80 ADA' },
+                  { quantity: '5', price: '100 ADA' },
+                ]}
+              />
+            </Box>
           </Box>
           {addressData?.isActive && <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} background="white" ignoreConstraint indentTitle fill="horizontal" />}
+          <Box direction="column" margin="small">
+            <Text margin={{ vertical: 'small' }}>Go direct to a specific Collage</Text>
+            <StyledBox direction="row" gap="xsmall">
+              <TextInput placeholder="Edition" value={edition} onChange={(e) => setEdition(e.target.value)} />
+              <Button color="white" label="Go" onClick={onClick} />
+            </StyledBox>
+          </Box>
           <Box direction="column" pad="medium" fill="horizontal">
             <Text textAlign="center">Collage policy ID</Text>
             <Text textAlign="center" wordBreak="break-all">

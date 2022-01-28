@@ -15,13 +15,13 @@ const CollagePage = ({ path: _path }: { path: string }) => {
   const params = useParams();
   return (
     <Box direction="row-responsive" alignSelf="center" gap="small">
-      <Link to="/explore">
+      <Link to="/mvp">
         <Button icon={<FormPreviousLink />} hoverIndicator margin={{ right: 'small' }} />
       </Link>
       <AssetLoader endpoint={`/collage/${params.id}`}>
         {(data, isFetched) =>
           isFetched ? (
-            <NftDetails metadata={data} path={`collages/${getCollageImageName(data as CollageNft)}.gif`} attributes={CollageAttributes} fill="vertical" />
+            <NftDetails metadata={data} path={`collages/${getCollageImageName(data as CollageNft)}.gif`} ignoreConstraint attributes={CollageAttributes} fill="vertical" />
           ) : (
             <NftDetailsSkeleton />
           )
