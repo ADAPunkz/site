@@ -104,7 +104,7 @@ const MVP = () => {
           <Box direction="column" background="punkz-charcoal" pad="medium" fill="horizontal">
             <Text textAlign="center">Send 20 ADA to the address below once minting starts</Text>
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" justify="center" align="center" pad="small">
-              {addressData?.isActive ? <Text color="terminal">{addressData.address}</Text> : <Countdown date={new Date(2022, 0, 28, 19)} renderer={CountdownRenderer} />}
+              {addressData?.isActive ? <Text color="terminal">{addressData.address}</Text> : <Countdown date={new Date(Date.UTC(2022, 0, 28, 19))} renderer={CountdownRenderer} />}
             </StyledBox>
           </Box>
           <Box direction="column" background="background-front" pad="medium" fill="horizontal">
