@@ -1,4 +1,4 @@
-import { HeightType, WidthType } from 'grommet/utils';
+import { DirectionType, FillType, HeightType, WidthType } from 'grommet/utils';
 import { FC } from 'react';
 
 export type Trait = {
@@ -26,6 +26,7 @@ export interface Nft {
   marketUrl: string;
   listedAt: string;
   minted: boolean;
+  mintedAt: string;
   offers: Offer[];
 }
 
@@ -50,6 +51,9 @@ export type NftProps<T extends Nft> = {
   path: string;
   width?: WidthType;
   height?: HeightType;
+  ignoreConstraint?: boolean;
+  direction?: DirectionType;
+  fill?: FillType;
 };
 
 export type NftApiResponse<T extends Nft> = {

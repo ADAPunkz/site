@@ -8,19 +8,39 @@ import GlitchImage from './GlitchImage';
 import HoverGlitchReveal from './HoverGlitchReveal';
 import { ADA } from './icons';
 
-const NftDetails = ({ metadata, path, attributes: Attributes }: NftProps<Nft>) => {
+const NftDetails = ({ metadata, path, attributes: Attributes, ignoreConstraint, direction = 'row-responsive' }: NftProps<Nft>) => {
   const size = useContext(ResponsiveContext);
   const constrainedSize = size === 'small' ? '' : 'medium';
 
   return (
     <Box direction="column">
-      <HoverGlitchReveal direction="row-responsive" background="punkz-charcoal">
+      <HoverGlitchReveal direction={direction} background="punkz-charcoal">
         <Box width={constrainedSize}>
           <GlitchImage fill src={`/images/${path}`} fit="contain" />
         </Box>
-        <Box width={constrainedSize} height={constrainedSize} direction="column" gap="small" pad="medium">
-          <Attributes metadata={metadata} />
-          <BlinkingCursor color="terminal" />
+        <Box
+          width={constrainedSize}
+          height={constrainedSize}
+          fill={size !== 'small' && ignoreConstraint ? 'vertical' : null}
+          justify="between"
+          direction="column"
+          gap="small"
+          pad="medium"
+        >
+          <Box>
+            <Attributes metadata={metadata} />
+            <BlinkingCursor color="terminal" />
+          </Box>
+          {metadata.mintedAt && (
+            <Box align="end">
+              <Text size="small">
+                Minted{' '}
+                {DateTime.fromISO(metadata.mintedAt, {
+                  zone: 'UTC',
+                }).toRelative()}
+              </Text>
+            </Box>
+          )}
         </Box>
       </HoverGlitchReveal>
       {metadata.onSale && (
