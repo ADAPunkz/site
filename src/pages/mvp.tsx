@@ -76,7 +76,8 @@ const MVP = () => {
               <Text size="small" weight="bold">
                 exact amount
               </Text>{' '}
-              to the address above, and hold an ADAPunk at the time of minting
+              to the address above, and hold an ADAPunk at the time of minting. You can purchase up to 5 per transaction by sending e.g. 40 ADA for two NFTs, 100 ADA for 5, and so
+              on
             </Text>
           </Box>
           {addressData?.isActive && <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} background="white" ignoreConstraint indentTitle fill="horizontal" />}
