@@ -4,6 +4,11 @@ exports.onCreatePage = async ({ page, actions }) => {
     page.matchPath = '/punk/*';
     createPage(page);
   }
+
+  if (page.path.match(/^\/collage/)) {
+    page.matchPath = '/collage/*';
+    createPage(page);
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {

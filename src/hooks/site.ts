@@ -12,6 +12,7 @@ export const useSiteMetadata = () => {
           author
           description
           policyId
+          collagePolicyId
           twitter
           discord
           github

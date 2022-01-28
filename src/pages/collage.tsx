@@ -1,14 +1,14 @@
 import { Router } from '@reach/router';
 
+import CollagePage from '../components/CollagePage';
 import Layout from '../components/Layout';
-import PunkzPage from '../components/PunkzPage';
 
-const Punk = () => (
+const Collage = () => (
   <Layout justify="center">
     <Router>
-      <PunkzPage path="/punk/:id" />
+      <CollagePage path="/collage/:id" />
     </Router>
   </Layout>
 );
 
-export default Punk;
+export default Collage;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, Image, Notification, Spinner, StatusType, Text, TextInput } from 'grommet';
 import { StatusCritical, StatusGood, StatusUnknown } from 'grommet-icons';
 import { useState } from 'react';
@@ -10,6 +9,7 @@ import CollageDetailsTicker from '../components/CollageDetailsTicker';
 import Layout from '../components/Layout';
 import SiteHeading from '../components/SiteHeading';
 import { apiUrl } from '../config';
+import { useSiteMetadata } from '../hooks';
 import { CollageNft, MintingAddress, NftApiResponse, WhitelistCheck } from '../utils';
 
 const StyledBox = styled(Box)`
@@ -29,7 +29,9 @@ const MVP = () => {
   const [checkAddress, setCheckAddress] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
-  /* const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc'); */
+  const siteMetadata = useSiteMetadata();
+
+  const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
   const { data: addressData } = useQuery<MintingAddress>('/collage/mint/address');
 
   const addressCheck = useMutation<WhitelistCheck, unknown, string>('/collage/mint/whitelist', async (address) => {
@@ -106,6 +108,17 @@ const MVP = () => {
             <StyledBox fill="horizontal" direction="row-responsive" gap="small" justify="center" align="center" pad="small">
               {addressData?.isActive ? <Text color="terminal">{addressData.address}</Text> : <Countdown date={new Date(Date.UTC(2022, 0, 28, 19))} renderer={CountdownRenderer} />}
             </StyledBox>
+            <Text textAlign="center" color="status-warning" size="small" margin={{ top: 'small' }}>
+              You must send the{' '}
+              <Text size="small" weight="bold">
+                exact amount
+              </Text>{' '}
+              to the address above, hold an ADAPunk at the time of minting, and be whitelisted to mint during presale. Initially minting is limited to 1 transaction per wallet.
+            </Text>
+            <Text textAlign="center" color="status-warning" size="small" margin={{ top: 'medium' }}>
+              If any of these conditions are not met, you will be refunded, minus transaction fees. Keep an eye on Discord announcements for updates on when whitelist will be
+              disabled and if transaction limits change.
+            </Text>
           </Box>
           <Box direction="column" background="background-front" pad="medium" fill="horizontal">
             <Text textAlign="center">Check your address is whitelisted for presale</Text>
@@ -129,7 +142,13 @@ const MVP = () => {
               </Box>
             </StyledBox>
           </Box>
-          {/* <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} /> */}
+          {addressData?.isActive && <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} background="white" ignoreConstraint indentTitle fill="horizontal" />}
+          <Box direction="column" pad="medium" fill="horizontal">
+            <Text textAlign="center">Collage policy ID</Text>
+            <Text textAlign="center" wordBreak="break-all">
+              {siteMetadata.collagePolicyId}
+            </Text>
+          </Box>
         </Box>
       </Box>
       {toastVisible && <Notification toast title={title} message={message} onClose={() => setToastVisible(false)} status={status} />}
