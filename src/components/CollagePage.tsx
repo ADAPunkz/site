@@ -20,11 +20,7 @@ const CollagePage = ({ path: _path }: { path: string }) => {
       </Link>
       <AssetLoader endpoint={`/collage/${params.id}`}>
         {(data, isFetched) =>
-          isFetched ? (
-            <NftDetails metadata={data} path={`collages/${getCollageImageName(data as CollageNft)}.gif`} ignoreConstraint attributes={CollageAttributes} fill="vertical" />
-          ) : (
-            <NftDetailsSkeleton />
-          )
+          isFetched ? <NftDetails metadata={data} path={`collages/${getCollageImageName(data as CollageNft)}.gif`} attributes={CollageAttributes} /> : <NftDetailsSkeleton />
         }
       </AssetLoader>
     </Box>

@@ -7,9 +7,10 @@ import styled from 'styled-components';
 
 import CollageDetailsTicker from '../components/CollageDetailsTicker';
 import Layout from '../components/Layout';
+import RarityBox from '../components/RarityBox';
 import SiteHeading from '../components/SiteHeading';
 import { useSiteMetadata } from '../hooks';
-import { CollageNft, MintingAddress, NftApiResponse } from '../utils';
+import { CollageNft, CollageTraitsResponse, MintingAddress, NftApiResponse } from '../utils';
 
 const StyledBox = styled(Box)`
   & input {
@@ -29,8 +30,9 @@ const MVP = () => {
 
   const siteMetadata = useSiteMetadata();
 
-  const { data } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
+  const { data: mintData } = useQuery<NftApiResponse<CollageNft>>('/collage?page=1&pageSize=50&sort=mintedAt&direction=desc');
   const { data: addressData } = useQuery<MintingAddress>('/collage/mint/address');
+  const { data: traitData, isFetched: traitsAreFetched } = useQuery<CollageTraitsResponse>('/collage/traits');
 
   const onClick = () => {
     if (edition) {
@@ -108,16 +110,29 @@ const MVP = () => {
               />
             </Box>
           </Box>
-          {addressData?.isActive && <CollageDetailsTicker title="Recently minted" nfts={data?.results || []} background="white" ignoreConstraint indentTitle fill="horizontal" />}
+          {addressData?.isActive && (
+            <CollageDetailsTicker title="Recently minted" nfts={mintData?.results || []} background="white" ignoreConstraint indentTitle fill="horizontal" />
+          )}
+          {traitsAreFetched && (
+            <Box direction="column" fill="horizontal">
+              <SiteHeading level="3">Rarity</SiteHeading>
+              <Box direction="row-responsive" gap="medium" fill="horizontal">
+                <RarityBox title="Tiers" attributes={traitData.tiers} />
+                <RarityBox title="Types" attributes={traitData.types} />
+              </Box>
+            </Box>
+          )}
           <Box direction="column" margin="small">
-            <Text margin={{ vertical: 'small' }}>Go direct to a specific Collage</Text>
+            <Text textAlign="center" margin={{ vertical: 'small' }}>
+              Go direct to a specific MVP
+            </Text>
             <StyledBox direction="row" gap="xsmall">
               <TextInput placeholder="Edition" value={edition} onChange={(e) => setEdition(e.target.value)} />
               <Button color="white" label="Go" onClick={onClick} />
             </StyledBox>
           </Box>
           <Box direction="column" pad="medium" fill="horizontal">
-            <Text textAlign="center">Collage policy ID</Text>
+            <Text textAlign="center">MVP policy ID:</Text>
             <Text textAlign="center" wordBreak="break-all">
               {siteMetadata.collagePolicyId}
             </Text>

@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { Nft } from '../utils';
+import { AssetLoaderProps, Nft } from '../utils';
 
-const AssetLoader = ({ children, endpoint }: { children: (nft: Nft, isFetched: boolean) => JSX.Element; endpoint: string }) => {
+const AssetLoader = ({ children, endpoint }: AssetLoaderProps) => {
   const { data, isFetched } = useQuery<Nft>(endpoint);
   return children(data, isFetched);
 };

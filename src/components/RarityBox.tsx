@@ -10,23 +10,23 @@ enum Sort {
   Default,
 }
 
-const RarityBox = ({ title, attributes }: { title: string; attributes: AttributeRarity[] }) => {
-  const [icon, setIcon] = useState(<Unsorted color="black" />);
+const RarityBox = ({ title, attributes, constrain = false }: { title: string; attributes: AttributeRarity[]; constrain?: boolean }) => {
+  const [icon, setIcon] = useState(<Unsorted color="terminal" />);
   const [sort, setSort] = useState<Sort>();
 
   useEffect(() => {
     switch (sort) {
       case Sort.Asc:
-        attributes.sort((a, b) => a.rarity - b.rarity);
-        setIcon(<Ascending color="black" />);
+        attributes.sort((a, b) => (a.rarity || a.percent) - (b.rarity || b.percent));
+        setIcon(<Ascending color="terminal" />);
         break;
       case Sort.Desc:
-        attributes.sort((a, b) => b.rarity - a.rarity);
-        setIcon(<Descending color="black" />);
+        attributes.sort((a, b) => (b.rarity || b.percent) - (a.rarity || a.percent));
+        setIcon(<Descending color="terminal" />);
         break;
       default:
         attributes.sort((a, b) => a.value.localeCompare(b.value));
-        setIcon(<Unsorted color="black" />);
+        setIcon(<Unsorted color="terminal" />);
     }
   }, [attributes, sort]);
 
@@ -44,8 +44,8 @@ const RarityBox = ({ title, attributes }: { title: string; attributes: Attribute
   };
 
   return (
-    <Box direction="column" width="medium" background="punkz-background-back" margin="medium">
-      <Box pad="small" direction="row" align="center" justify="between" fill="horizontal" gap="small" background="punkz-background-front">
+    <Box direction="column" width={constrain ? 'medium' : ''} fill={constrain ? false : 'horizontal'} background="background-front">
+      <Box pad="small" direction="row" align="center" justify="between" fill="horizontal" gap="small" background="punkz-charcoal">
         <Text weight="bold">{title}</Text>
         <Box direction="row">
           <Text weight="bold" margin={{ right: 'small' }}>
@@ -58,7 +58,7 @@ const RarityBox = ({ title, attributes }: { title: string; attributes: Attribute
         {attributes.map((attribute) => (
           <Box key={attribute.value} direction="row" justify="between" margin="xsmall">
             <Text>{attribute.value}</Text>
-            <Text>{`${attribute.rarity}%`}</Text>
+            <Text>{`${attribute.rarity || attribute.percent}%`}</Text>
           </Box>
         ))}
       </Box>

@@ -1,4 +1,4 @@
-import { DirectionType, FillType, HeightType, WidthType } from 'grommet/utils';
+import { BackgroundType, FillType } from 'grommet/utils';
 import { FC } from 'react';
 
 export type Trait = {
@@ -47,20 +47,42 @@ export interface CollageNft extends Nft {
 
 export type NftProps<T extends Nft> = {
   metadata: T;
-  attributes?: FC<any>;
   path: string;
-  width?: WidthType;
-  height?: HeightType;
+}
+
+export type NftDetails = {
+  attributes?: FC<any>;
   ignoreConstraint?: boolean;
-  direction?: DirectionType;
+}
+
+export type NftDetailsProps<T extends Nft> = NftDetails & NftProps<T>; 
+
+export type NftDetailsTicker<T extends Nft> = {
+  nfts: T[];
+  title: string;
+  indentTitle?: boolean;
+  background?: BackgroundType;
   fill?: FillType;
-};
+  pathSelector?: (nft: T) => string;
+}
+
+export type NftDetailsTickerProps<T extends Nft> = NftDetails & NftDetailsTicker<T>;
+
+export type AssetLoaderProps = {
+  endpoint: string;
+  children: (nft: Nft, isFetched: boolean) => JSX.Element;
+}
 
 export type NftApiResponse<T extends Nft> = {
   results: T[];
   resultsCount: number;
   nextPage: number;
   pageSize: number;
+};
+
+export type CollageTraitsResponse = {
+ types: AttributeRarity[];
+ tiers: AttributeRarity[];
 };
 
 export type AttributeList = {
@@ -76,6 +98,7 @@ export type AttributeList = {
 export type AttributeRarity = {
   value: string;
   rarity: number;
+  percent: number;
 };
 
 export type AttributeRarityList = {
