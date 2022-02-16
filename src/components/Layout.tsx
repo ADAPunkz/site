@@ -9,7 +9,7 @@ import { useLocation } from '@reach/router';
 
 import { dispatch, useSiteMetadata } from '../hooks';
 import theme from '../theme';
-import { EVENTS } from '../utils';
+import { EVENTS, isSSR } from '../utils';
 import ChestOverview from './ChestOverview';
 import ConnectButton from './ConnectButton';
 import NavBar from './NavBar';
@@ -40,7 +40,9 @@ const InnerLayout: FC<LayoutProps> = (props) => {
     top: 'bottom',
   };
 
-  if (size === 'small') {
+  const renderLarge = !isSSR && size !== 'small';
+
+  if (!renderLarge) {
     dropAlign.right = 'right';
   }
 
@@ -48,17 +50,17 @@ const InnerLayout: FC<LayoutProps> = (props) => {
     <>
       <SEO />
       <Box direction="column" justify="between" fill="vertical" flex="grow" overflow="auto">
-        <StickyHeader justify="start" pad="medium" gap="large" fill="horizontal" fadeColor={(theme.global.colors as any).background}>
+        <StickyHeader justify="start" pad="small" gap="large" fill="horizontal" fadeColor={(theme.global.colors as any).background}>
           <Box direction="row" align="center" gap="small">
             <StyledLink to="/">
               <Box direction="row" gap="small" align="center">
                 <StaticImage src="../images/icon.png" alt={`${siteMetadata.title} Icon`} placeholder="none" layout="fixed" width={48} height={48} loading="eager" />
-                {size !== 'small' && <SiteHeading level="4">ADAPunkz</SiteHeading>}
+                {renderLarge && <SiteHeading level="4">ADAPunkz</SiteHeading>}
               </Box>
             </StyledLink>
           </Box>
           <Box direction="row" fill="horizontal" align="center" justify="between">
-            {size !== 'small' && <NavBar />}
+            {renderLarge && <NavBar />}
             <Box direction="row" justify="end" fill="horizontal">
               {location.pathname.includes('explore') && (
                 <Button
@@ -73,13 +75,14 @@ const InnerLayout: FC<LayoutProps> = (props) => {
                 />
               )}
               <DropButton icon={<Package />} dropContent={<ChestOverview />} dropAlign={dropAlign} />
-              {size !== 'small' && (
+              {renderLarge ? (
                 <>
                   <ConnectButton policyId={siteMetadata.policyId} />
                   <SocialsBar size="20px" />
                 </>
+              ) : (
+                <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />
               )}
-              {size === 'small' && <Button icon={<Menu />} hoverIndicator onClick={() => setSidebarOpen(true)} />}
             </Box>
           </Box>
         </StickyHeader>

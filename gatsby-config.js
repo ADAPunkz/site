@@ -24,8 +24,8 @@ module.exports = {
         name: 'ADAPunkz',
         short_name: 'ADAPunkz',
         start_url: '/explore',
-        background_color: '#00AADD',
-        theme_color: '#19809F',
+        background_color: '#0171B7',
+        theme_color: '#0171B7',
         display: 'standalone',
         icon: 'src/images/icon.png',
         icon_options: {

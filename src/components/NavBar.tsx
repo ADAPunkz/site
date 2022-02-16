@@ -9,6 +9,7 @@ const NavBar = ({ direction = 'row' }: { direction?: DirectionType }) => (
     <StyledLink to="/rarity">Rarity</StyledLink>
     <StyledLink to="/mvp">MVP</StyledLink>
     <StyledLink to="/roadmap">Roadmap</StyledLink>
+    <StyledLink to="/pool">Pool</StyledLink>
     <StyledLink to="/team">Team</StyledLink>
     <StyledLink to="/faq">FAQ</StyledLink>
   </Nav>

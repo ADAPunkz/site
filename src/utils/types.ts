@@ -158,3 +158,18 @@ export type WhitelistCheck = {
   address: string;
   isWhitelisted: boolean;
 };
+
+export type PoolInfo = {
+  blocksMinted: number;
+  blocksEpoch: number;
+  liveStake: number;
+  liveSize: number;
+  liveSaturation: number;
+  liveDelegators: number;
+  activeStake: number;
+  activeSize: number;
+  declaredPledge: number;
+  livePledge: number;
+  marginCost: number;
+  fixedCost: number;
+};
