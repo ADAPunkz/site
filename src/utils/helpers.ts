@@ -1,8 +1,13 @@
-import { CollageNft } from "./types";
+import { CollageNft } from './types';
 
-export const randomIntBetween = (min: number, max: number) => Math.floor((Math.random() * (max - min)) + min);
+export const randomIntBetween = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
 
 export const isSSR: boolean = (() => typeof window === 'undefined')();
+
+export const isMobilePlatform = isSSR
+  ? false
+  : ((userAgent = navigator.userAgent.toLowerCase()) =>
+      userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod'))();
 
 export const fromHex = (hex: string) => {
   let str = '';
