@@ -24,7 +24,7 @@
   "dependencies": {
     "@emurgo/cardano-serialization-lib-browser": "^10.0.4",
     "babel-plugin-styled-components": "^2.0.6",
-    "gatsby": "^4.9.0",
+    "gatsby": "^4.9.1",
     "gatsby-plugin-gatsby-cloud": "^4.9.0",
     "gatsby-plugin-graphql-codegen": "^3.1.1",
     "gatsby-plugin-image": "^2.9.0",
@@ -42,9 +42,9 @@
     "grommet": "^2.21.0",
     "grommet-icons": "^4.7.0",
     "luxon": "^2.3.1",
-    "react": "^17.0.2",
+    "react": "rc",
     "react-countdown": "^2.3.2",
-    "react-dom": "^17.0.2",
+    "react-dom": "rc",
     "react-helmet": "^6.1.0",
     "react-middle-ellipsis": "^1.2.1",
     "react-query": "^3.34.16",
@@ -53,18 +53,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@types/luxon": "^2.0.9",
+    "@types/luxon": "^2.3.0",
     "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
-    "eslint-config-prettier": "^8.4.0",
-    "eslint-plugin-react": "^7.29.2",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
+    "lint-staged": "^12.3.5",
     "prettier": "^2.5.1",
     "typescript": "^4.6.2"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
