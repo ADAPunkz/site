@@ -28,8 +28,4 @@ const queryClient = new QueryClient({
   },
 });
 
-export const wrapRootElement = ({ element }) => (
-  <QueryClientProvider client={queryClient}>
-    {element}
-  </QueryClientProvider>
-);
+export const wrapRootElement = ({ element }) => <QueryClientProvider client={queryClient}>{element}</QueryClientProvider>;

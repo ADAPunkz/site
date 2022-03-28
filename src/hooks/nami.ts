@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMutation } from 'react-query';
 import shallow from 'zustand/shallow';
 
 import { cardano } from '../utils';
@@ -89,4 +90,42 @@ export const useNami = (policyId?: string) => {
   }, [getAndSetAssets, isEnabled, policyId]);
 
   return { address, assets, enable, isEnabled, loading };
+};
+
+export const useWalletLogin = () => {
+  const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState('');
+
+  const mutation = useMutation(async (body) => {
+    const response = await fetch('https://adapunkz-auth.azurewebsites.net/api/token', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    }
+
+    return response.json();
+  });
+
+  const login = () => {
+    setLoading(true);
+    cardano
+      .signLogin()
+      .then(async (payload) => {
+        const response = await mutation.mutateAsync(payload);
+        setToken(response.token);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    localStorage.setItem('wallet_token', token);
+  }, [token]);
+
+  return { login, loading, token };
 };

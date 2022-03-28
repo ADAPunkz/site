@@ -4,17 +4,26 @@ import { fromHex, isSSR } from './helpers';
 
 class WasmLoader {
   private _csl: typeof import('@emurgo/cardano-serialization-lib-browser');
+  private _cms: typeof import('@emurgo/cardano-message-signing-browser');
 
-  async load() {
-    if (this._csl) {
-      return;
+  async loadCSL() {
+    if (!this._csl) {
+      this._csl = await import('@emurgo/cardano-serialization-lib-browser');
     }
+  }
 
-    this._csl = await import('@emurgo/cardano-serialization-lib-browser');
+  async loadCMS() {
+    if (!this._cms) {
+      this._cms = await import('@emurgo/cardano-message-signing-browser');
+    }
   }
 
   get CSL() {
     return this._csl;
+  }
+
+  get CMS() {
+    return this._cms;
   }
 }
 
@@ -49,12 +58,21 @@ const enable = async () => {
 };
 
 const getAddress = async () => {
-  await loader.load();
+  await loader.loadCSL();
   await enable();
 
   const address = (await walletApi().getUsedAddresses())[0] as string;
 
   return loader.CSL.Address.from_bytes(Buffer.from(address, 'hex')).to_bech32();
+};
+
+export const signLogin = async () => {
+  await enable();
+
+  const address = (await walletApi().getUsedAddresses())[0] as string;
+  const payload = Buffer.from('By signing this message you are providing proof of ownership of your current wallet account, this will not perform any kind of transaction.').toString('hex');
+
+  return await walletApi().signData(address, payload);
 };
 
 const getAssetNames = async (policyId: string) => {
@@ -65,7 +83,7 @@ const getAssetNames = async (policyId: string) => {
   const hex = (await walletApi().getBalance()) as string;
   const bytes = Buffer.from(hex, 'hex');
 
-  await loader.load();
+  await loader.loadCSL();
 
   const csl = loader.CSL;
   const balance = csl.Value.from_bytes(bytes);
@@ -106,4 +124,5 @@ export const cardano = {
   enable,
   getAddress,
   getAssetNames,
+  signLogin
 };
