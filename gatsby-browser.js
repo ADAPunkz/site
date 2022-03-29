@@ -14,7 +14,10 @@ const queryClient = new QueryClient({
           url += `&page=${pageParam}&pageSize=50`;
         }
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          credentials: 'include',
+          mode: 'cors',
+        });
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
