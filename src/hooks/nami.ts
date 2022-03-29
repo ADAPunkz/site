@@ -5,7 +5,7 @@ import shallow from 'zustand/shallow';
 import { cardano } from '../utils';
 import { useStore } from './store';
 
-export const useNami = (policyId?: string) => {
+export const useWalletAssets = (policyId?: string) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
 

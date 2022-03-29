@@ -2,7 +2,7 @@ import { Box, Button, Spinner, Text } from 'grommet';
 import MiddleEllipsis from 'react-middle-ellipsis';
 import styled from 'styled-components';
 
-import { useNami } from '../hooks';
+import { useWalletAssets } from '../hooks';
 import { cardano } from '../utils';
 
 const LimitedText = styled(Text)`
@@ -11,7 +11,7 @@ const LimitedText = styled(Text)`
 `;
 
 const ConnectButton = ({ policyId }: { policyId?: string }) => {
-  const { address, isEnabled, enable, loading } = useNami(policyId);
+  const { address, isEnabled, enable, loading } = useWalletAssets(policyId);
 
   return (
     <Box justify="center" width="small">

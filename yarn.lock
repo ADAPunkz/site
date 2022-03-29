@@ -4847,9 +4847,9 @@ __metadata:
     lint-staged: ^12.3.7
     luxon: ^2.3.1
     prettier: ^2.6.1
-    react: rc
+    react: latest
     react-countdown: ^2.3.2
-    react-dom: rc
+    react-dom: latest
     react-helmet: ^6.1.0
     react-middle-ellipsis: ^1.2.1
     react-query: ^3.34.19
@@ -14816,15 +14816,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:rc":
-  version: 18.0.0-rc.1
-  resolution: "react-dom@npm:18.0.0-rc.1"
+"react-dom@npm:latest":
+  version: 17.0.2
+  resolution: "react-dom@npm:17.0.2"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: ^0.21.0-rc.1
+    object-assign: ^4.1.1
+    scheduler: ^0.20.2
   peerDependencies:
-    react: ^18.0.0-rc.1
-  checksum: a7c1a7afafb83143db5a7c62ffa1063f30744fd97f20b60495a08b0efad521cb51e212169290952a02895472fad3eeffcf1bc6bbcb1aab5507a0441558c2c970
+    react: 17.0.2
+  checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
   languageName: node
   linkType: hard
 
@@ -14914,12 +14915,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:rc":
-  version: 18.0.0-rc.1
-  resolution: "react@npm:18.0.0-rc.1"
+"react@npm:latest":
+  version: 17.0.2
+  resolution: "react@npm:17.0.2"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 2810f1320c3cbf8763cc4a5e644b7d0705aa9797587d8f15f27840dbfb4f7ecbedb11df7c4105d9ff6dc1f9db87d0e2289c5f52a4fb6324aa6132b9458aa04bd
+    object-assign: ^4.1.1
+  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
   languageName: node
   linkType: hard
 
@@ -15506,12 +15508,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.21.0-rc.1":
-  version: 0.21.0-rc.1-next-f468816ef-20220225
-  resolution: "scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225"
+"scheduler@npm:^0.20.2":
+  version: 0.20.2
+  resolution: "scheduler@npm:0.20.2"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 7e492fcb51852e0920852071db9e17d76389ad28a9374099ae96f5b6ffdcea5a293c8a29d2af26a76ee3baa40009b5af18d8b25344e505568fb67b030b222ca5
+    object-assign: ^4.1.1
+  checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
   languageName: node
   linkType: hard
 
