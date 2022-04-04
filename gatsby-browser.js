@@ -2,21 +2,27 @@ import './src/styles/global.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { apiUrl } from './src/config';
+import config from './gatsby-config';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: async ({ queryKey, pageParam = 1 }) => {
-        let url = `${apiUrl}${queryKey[0]}`;
+        let url = `${config.siteMetadata.apiUrl}${queryKey[0]}`;
 
         if (queryKey[queryKey.length - 1] === 'paged') {
           url += `&page=${pageParam}&pageSize=50`;
         }
 
+        const headers = {};
+        const token = localStorage.getItem('wallet_token');
+
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
+        }
+
         const response = await fetch(url, {
-          credentials: 'include',
-          mode: 'cors',
+          headers,
         });
 
         if (!response.ok) {

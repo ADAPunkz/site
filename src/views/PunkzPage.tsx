@@ -4,10 +4,10 @@ import { FormPreviousLink } from 'grommet-icons';
 
 import { useParams } from '@reach/router';
 
-import AssetLoader from './AssetLoader';
-import NftDetails from './NftDetails';
-import NftDetailsSkeleton from './NftDetailsSkeleton';
-import PunkzAttributes from './PunkzAttributes';
+import AssetLoader from '../components/AssetLoader';
+import NftDetails from '../components/NftDetails';
+import NftDetailsSkeleton from '../components/NftDetailsSkeleton';
+import PunkzAttributes from '../components/PunkzAttributes';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const PunkzPage = ({ path: _path }: { path: string }) => {

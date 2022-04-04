@@ -7,6 +7,8 @@ module.exports = {
     description: 'Anonymity. Unity. Revolution',
     policyId: '76ebe108d0d58ba2ffe6024cf25cf5f6a890f4c61d77ee7911362b14',
     collagePolicyId: 'f97bb2ae7b056a17a63847fbe5032148353d30c980f5467f51f19637',
+    apiUrl: 'https://adapunkz-api.azurewebsites.net',
+    authUrl: 'https://adapunkz-auth.azurewebsites.net',
     twitter: 'https://twitter.com/ADAPunkz',
     discord: 'https://discord.gg/mFp7PW8zm3',
     github: 'https://github.com/ADAPunkz',

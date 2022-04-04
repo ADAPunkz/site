@@ -9,6 +9,11 @@ exports.onCreatePage = async ({ page, actions }) => {
     page.matchPath = '/collage/*';
     createPage(page);
   }
+
+  if (page.path.match(/^\/app/)) {
+    page.matchPath = '/app/*';
+    createPage(page);
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {

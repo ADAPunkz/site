@@ -8,8 +8,9 @@ import styled from 'styled-components';
 import { useLocation } from '@reach/router';
 
 import { dispatch, useSiteMetadata } from '../hooks';
+import { useMobileLayout } from '../hooks/layout';
 import theme from '../theme';
-import { EVENTS, isSSR } from '../utils';
+import { EVENTS } from '../utils';
 import ChestOverview from './ChestOverview';
 import ConnectButton from './ConnectButton';
 import NavBar from './NavBar';
@@ -35,12 +36,13 @@ const InnerLayout: FC<LayoutProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const size = useContext(ResponsiveContext);
   const location = useLocation();
+  const mobileLayout = useMobileLayout();
 
   const dropAlign: any = {
     top: 'bottom',
   };
 
-  const renderLarge = !isSSR && size !== 'small';
+  const renderLarge = !mobileLayout;
 
   if (!renderLarge) {
     dropAlign.right = 'right';

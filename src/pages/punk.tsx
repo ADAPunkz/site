@@ -1,7 +1,7 @@
 import { Router } from '@reach/router';
 
 import Layout from '../components/Layout';
-import PunkzPage from '../components/PunkzPage';
+import PunkzPage from '../views/PunkzPage';
 
 const Punk = () => (
   <Layout justify="center">

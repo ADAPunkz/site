@@ -13,6 +13,8 @@ export const useSiteMetadata = () => {
           description
           policyId
           collagePolicyId
+          apiUrl
+          authUrl
           twitter
           discord
           github

@@ -1,7 +1,7 @@
 import { Router } from '@reach/router';
 
-import CollagePage from '../components/CollagePage';
 import Layout from '../components/Layout';
+import CollagePage from '../views/CollagePage';
 
 const Collage = () => (
   <Layout justify="center">

@@ -4,11 +4,11 @@ import { FormPreviousLink } from 'grommet-icons';
 
 import { useParams } from '@reach/router';
 
+import AssetLoader from '../components/AssetLoader';
+import CollageAttributes from '../components/CollageAttributes';
+import NftDetails from '../components/NftDetails';
+import NftDetailsSkeleton from '../components/NftDetailsSkeleton';
 import { CollageNft, getCollageImageName } from '../utils';
-import AssetLoader from './AssetLoader';
-import CollageAttributes from './CollageAttributes';
-import NftDetails from './NftDetails';
-import NftDetailsSkeleton from './NftDetailsSkeleton';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CollagePage = ({ path: _path }: { path: string }) => {
